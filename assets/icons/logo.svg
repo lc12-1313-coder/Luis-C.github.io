@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 88" role="img" aria-label="Mundo Monopoly">
+  <!-- Fondo rojo con esquinas redondeadas -->
+  <rect x="0" y="0" width="360" height="88" rx="12" fill="#E30613"/>
+  <!-- Texto centrado vertical/horizontalmente -->
+  <text x="50%" y="50%"
+        dominant-baseline="middle" text-anchor="middle"
+        font-family="Montserrat, Arial, sans-serif"
+        font-weight="700"
+        font-size="36"
+        fill="#ffffff">Mundo Monopoly</text>
+</svg>

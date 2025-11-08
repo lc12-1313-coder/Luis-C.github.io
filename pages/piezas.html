@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Piezas y Propiedades - Mundo Monopoly</title>
+  <meta name="description" content="Conoce las fichas, propiedades y grupos de color del tablero de Monopoly." />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet"/>
+  <link href="../css/styles.css" rel="stylesheet"/>
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg?v=2"/>
+  <meta name="theme-color" content="#E30613"/>
+
+  <style>
+[data-theme="light"] .badge.text-bg-secondary {
+  background-color: #e0e0e0 !important;
+  color: #1a1a1a !important;
+}
+
+[data-theme="dark"] .badge.text-bg-secondary {
+  background-color: #333 !important;
+  color: #f5f5f5 !important;
+}
+</style>
+
+</head>
+
+
+<body>
+  <!-- NAV -->
+  <nav class="navbar navbar-expand-lg navbar-carbon fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="../index.html">
+        <img src="../assets/icons/logo.svg" alt="Mundo Monopoly" height="40" />
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" data-page="index" href="#">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" data-page="historia.html" href="#">Historia</a></li>
+          <li class="nav-item"><a class="nav-link" data-page="reglas.html" href="#">Reglas</a></li>
+          <li class="nav-item"><a class="nav-link" data-page="piezas.html" href="#">Piezas</a></li>
+          <li class="nav-item"><a class="nav-link" data-page="estrategias.html" href="#">Estrategias</a></li>
+          <li class="nav-item"><a class="nav-link" data-page="productos.html" href="#">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" data-page="noticias.html" href="#">Noticias</a></li>
+          <li class="nav-item"><a class="nav-link" data-page="contacto.html" href="#">Contacto</a></li>
+        </ul>
+
+        <div class="d-flex ms-auto">
+          <button id="darkModeToggle" class="btn btn-outline-light" type="button" title="Modo oscuro">
+            <i class="bi bi-moon-stars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-5">
+    <!-- Migas -->
+    <nav aria-label="breadcrumb" class="mb-3">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="../index.html">Inicio</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Piezas</li>
+      </ol>
+    </nav>
+
+    <header class="mb-4">
+      <h1 class="mb-2">Fichas y Propiedades</h1>
+      <p class="text-muted mb-0">Explora las fichas (tokens), los grupos de color y cuándo construir casas u hoteles.</p>
+    </header>
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs mb-3" id="piecesTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="tab-fichas" data-bs-toggle="tab" data-bs-target="#pane-fichas" type="button" role="tab" aria-controls="pane-fichas" aria-selected="true">Fichas</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="tab-prop" data-bs-toggle="tab" data-bs-target="#pane-prop" type="button" role="tab" aria-controls="pane-prop" aria-selected="false">Propiedades por color</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="tab-cyh" data-bs-toggle="tab" data-bs-target="#pane-cyh" type="button" role="tab" aria-controls="pane-cyh" aria-selected="false">Casas & Hoteles</button>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <!-- ====== FICHAS (tab completo) ====== -->
+<div class="tab-pane fade show active" id="pane-fichas" role="tabpanel" aria-labelledby="tab-fichas">
+  <!-- encabezado y controles -->
+  <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+    <h2 class="h4 mb-0 me-auto">Fichas</h2>
+
+    <div class="btn-group" role="group" aria-label="Filtro de fichas">
+      <button type="button" class="btn btn-secondary active" data-filter="all">Todas</button>
+      <button type="button" class="btn btn-secondary" data-filter="antiguas">1930–1940</button>
+      <button type="button" class="btn btn-secondary" data-filter="vehiculos">Vehículos</button>
+    </div>
+
+    <div class="d-flex align-items-center gap-2">
+      <label for="tokenSort" class="small text-muted mb-0">Ordenar:</label>
+      <select id="tokenSort" class="form-select form-select-sm" style="width:160px">
+        <option value="az" selected>A–Z</option>
+        <option value="year">Año</option>
+      </select>
+    </div>
+
+    <div class="ms-auto" style="min-width:260px">
+      <input id="tokenSearch" type="search" class="form-control" placeholder="Buscar ficha (perro, coche, sombrero…)" />
+    </div>
+  </div>
+
+  <!-- Bloque informativo -->
+  <div class="card mb-3 border-0 shadow-sm bg-gradient" style="--bs-bg-opacity:.6;">
+    <div class="card-body">
+      <h5 class="mb-2">Sobre las fichas clásicas</h5>
+      <p class="small text-muted mb-0">
+        Las fichas de Monopoly son pequeñas esculturas de <strong>metal plateado</strong> con acabado brillante y gran detalle.
+        Representan la identidad de cada jugador y se han convertido en íconos del juego desde los años 30.
+      </p>
+    </div>
+  </div>
+
+  <!-- ====== FICHAS (grid con imágenes) ====== -->
+<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 mt-3">
+
+  <div class="col">
+    <div class="card token-card h-100">
+      <img class="token-thumb" src="../assets/tokens/battleship.png" alt="Barco (Battleship)" data-full="../assets/fichas/battleship.png">
+      <div class="card-body">
+        <h6 class="card-title mb-1">Barco (Battleship)</h6>
+        <p class="card-text small text-muted mb-0">Año 1937 • Metal</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card token-card h-100">
+      <img class="token-thumb" src="../assets/tokens/cannon.png" alt="Cañón (Cannon)" data-full="../assets/fichas/cannon.png">
+      <div class="card-body">
+        <h6 class="card-title mb-1">Cañón (Cannon)</h6>
+        <p class="card-text small text-muted mb-0">Año 1936 • Metal</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card token-card h-100">
+      <img class="token-thumb" src="../assets/tokens/wheelbarrow.png" alt="Carretilla (Wheelbarrow)" data-full="../assets/fichas/wheelbarrow.png">
+      <div class="card-body">
+        <h6 class="card-title mb-1">Carretilla (Wheelbarrow)</h6>
+        <p class="card-text small text-muted mb-0">Año 1940 • Metal</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card token-card h-100">
+      <img class="token-thumb" src="../assets/tokens/racecar.png" alt="Coche de carreras (Racecar)" data-full="../assets/fichas/racecar.png">
+      <div class="card-body">
+        <h6 class="card-title mb-1">Coche de carreras (Racecar)</h6>
+        <p class="card-text small text-muted mb-0">Año 1935 • Metal</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card token-card h-100">
+      <img class="token-thumb" src="../assets/tokens/thimble.png" alt="Dedal (Thimble)" data-full="../assets/fichas/thimble.png">
+      <div class="card-body">
+        <h6 class="card-title mb-1">Dedal (Thimble)</h6>
+        <p class="card-text small text-muted mb-0">Año 1935 • Metal</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card token-card h-100">
+      <img class="token-thumb" src="../assets/tokens/scottie-dog.png" alt="Perro (Scottie Dog)" data-full="../assets/fichas/scottie-dog.png">
+      <div class="card-body">
+        <h6 class="card-title mb-1">Perro (Scottie Dog)</h6>
+        <p class="card-text small text-muted mb-0">Año 1940 • Metal</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card token-card h-100">
+      <img class="token-thumb" src="../assets/tokens/iron.png" alt="Plancha (Iron)" data-full="../assets/fichas/iron.png">
+      <div class="card-body">
+        <h6 class="card-title mb-1">Plancha (Iron)</h6>
+        <p class="card-text small text-muted mb-0">Año 1935 • Metal</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card token-card h-100">
+      <img class="token-thumb" src="../assets/tokens/top-hat.png" alt="Sombrero de copa (Top Hat)" data-full="../assets/fichas/top-hat.png">
+      <div class="card-body">
+        <h6 class="card-title mb-1">Sombrero de copa (Top Hat)</h6>
+        <p class="card-text small text-muted mb-0">Año 1935 • Metal</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card token-card h-100">
+      <img class="token-thumb" src="../assets/tokens/horse-and-rider.png" alt="Vaquero (Horse and Rider)" data-full="../assets/fichas/horse-and-rider.png">
+      <div class="card-body">
+        <h6 class="card-title mb-1">Vaquero (Horse and Rider)</h6>
+        <p class="card-text small text-muted mb-0">Año 1950 • Metal</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card token-card h-100">
+      <img class="token-thumb" src="../assets/tokens/boot.png" alt="Zapato (Boot)" data-full="../assets/fichas/boot.png">
+      <div class="card-body">
+        <h6 class="card-title mb-1">Zapato (Boot)</h6>
+        <p class="card-text small text-muted mb-0">Año 1935 • Metal</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- ====== /FICHAS ====== -->
+
+  <!-- estilos -->
+  <style>
+    .token-card { overflow: hidden; border:1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.03); transition:transform .15s ease; }
+    .token-thumb { position: relative; }
+    .token-badge { position: absolute; left: .5rem; top: .5rem; }
+    .token-card:hover { transform: translateY(-3px); }
+  </style>
+
+  <!-- ===== Estilo mejorado de filtros (Fichas) ===== -->
+  <style>
+    #pane-fichas .btn-group {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 0 1px rgba(0,0,0,.15);
+    }
+    #pane-fichas .btn-group .btn {
+      border: 1px solid transparent;
+      font-weight: 500;
+      padding: .45rem 1rem;
+      transition: all .2s ease;
+    }
+
+    /* Modo oscuro */
+    .dark-theme #pane-fichas .btn-group .btn,
+    [data-theme="dark"] #pane-fichas .btn-group .btn {
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(0,0,0,.15));
+      color: #e6e6e6;
+      border-color: rgba(255,255,255,.08);
+    }
+    .dark-theme #pane-fichas .btn-group .btn:hover,
+    [data-theme="dark"] #pane-fichas .btn-group .btn:hover {
+      background: rgba(255,255,255,.14);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+    .dark-theme #pane-fichas .btn-group .btn.active,
+    [data-theme="dark"] #pane-fichas .btn-group .btn.active {
+      background: linear-gradient(180deg, #ffcb05 0%, #e3a500 90%);
+      color: #1a1a1a;
+      font-weight: 600;
+      border-color: rgba(255,255,255,.25);
+      box-shadow: 0 2px 8px rgba(255, 200, 0, .25);
+    }
+
+    /* Modo claro */
+    [data-theme="light"] #pane-fichas .btn-group {
+      box-shadow: 0 0 0 1px rgba(0,0,0,.12);
+    }
+    [data-theme="light"] #pane-fichas .btn-group .btn {
+      background: linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.02));
+      color: #333;
+      border-color: rgba(0,0,0,.12);
+    }
+    [data-theme="light"] #pane-fichas .btn-group .btn:hover {
+      background: rgba(0,0,0,.08);
+      color: #000;
+      box-shadow: 0 2px 6px rgba(0,0,0,.2);
+    }
+    [data-theme="light"] #pane-fichas .btn-group .btn.active {
+      background: linear-gradient(180deg, #ffcc00 0%, #e3a300 90%);
+      color: #222;
+      border-color: rgba(0,0,0,.25);
+      box-shadow: 0 2px 8px rgba(255, 200, 0, .35);
+    }
+
+    #pane-fichas label[for="tokenSort"] { color: inherit; opacity: .9; }
+  </style>
+
+  <!-- js -->
+
+  <script>
+(() => {
+  const pane   = document.getElementById('pane-fichas');
+  if (!pane) return;
+
+  const grid   = pane.querySelector('.row.g-4');
+  const cols   = Array.from(grid?.children || []).filter(el => el.classList.contains('col'));
+
+  // Indexa metadatos a partir del DOM (nombre y año)
+  const items = cols.map(col => {
+    const titleEl = col.querySelector('.card-title');
+    const metaEl  = col.querySelector('.card-text');
+    const name = (titleEl?.textContent || '').trim();
+    const yearMatch = (metaEl?.textContent || '').match(/\b(19|20)\d{2}\b/);
+    const year = yearMatch ? parseInt(yearMatch[0], 10) : 0;
+    return { col, name, nameKey: name.toLocaleLowerCase(), year };
+  });
+
+  // --- Controles
+  const btns     = pane.querySelectorAll('[data-filter]');
+  const sortSel  = pane.querySelector('#tokenSort');
+  const searchIn = pane.querySelector('#tokenSearch');
+
+  let state = {
+    filter: 'all',      // all | antiguas | vehiculos
+    query:  '',
+    sort:   sortSel?.value || 'az'
+  };
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      state.filter = btn.dataset.filter || 'all';
+      apply(true);
+    });
+  });
+
+  sortSel?.addEventListener('change', () => {
+    state.sort = sortSel.value;
+    apply(true); // reordenar
+  });
+
+  let tId;
+  searchIn?.addEventListener('input', () => {
+    clearTimeout(tId);
+    tId = setTimeout(() => {
+      state.query = (searchIn.value || '').toLocaleLowerCase().trim();
+      apply();
+    }, 120);
+  });
+
+  function passesFilter(it) {
+    // Filtro por botón seleccionado
+    const byFilter =
+      state.filter === 'all' ||
+      (state.filter === 'antiguas' && it.year >= 1930 && it.year <= 1940) ||
+      (state.filter === 'vehiculos' && /(coche|barco|carretilla)/i.test(it.nameKey));
+
+    // Búsqueda por texto
+    const byQuery = !state.query || it.nameKey.includes(state.query);
+
+    return byFilter && byQuery;
+  }
+
+  function apply(shouldSort = false){
+    // Mostrar/ocultar según filtro + búsqueda
+    items.forEach(it => {
+      it.col.style.display = passesFilter(it) ? '' : 'none';
+    });
+
+    if (shouldSort) {
+      const visibles = items.filter(passesFilter);
+      const comparator = (a, b) => {
+        if (state.sort === 'year') {
+          return (a.year - b.year) || a.name.localeCompare(b.name);
+        }
+        // A–Z por defecto
+        return a.name.localeCompare(b.name);
+      };
+      visibles.sort(comparator);
+
+      // Reordenar en el DOM solo los visibles (los ocultos conservan su sitio)
+      const frag = document.createDocumentFragment();
+      visibles.forEach(it => frag.appendChild(it.col));
+      grid.appendChild(frag);
+    }
+  }
+
+  // Primera aplicación (mantiene A–Z inicial)
+  apply();
+})();
+</script>
+ 
+
+
+</div>
+<!-- ====== /FICHAS ====== -->
+
+
+
+      <!-- PROPIEDADES POR COLOR -->
+      <div class="tab-pane fade" id="pane-prop" role="tabpanel" aria-labelledby="tab-prop">
+
+        <!-- 🔹 TABLERO INTERACTIVO 🔹 -->
+        <section class="container my-4">
+          <h2 class="mb-3">Tablero interactivo</h2>
+          <div class="board-wrap">
+            <!-- Usa ruta RELATIVA (coherente con el resto del sitio) -->
+            <img src="../assets/board/monopoly-board.png"
+                 alt="Tablero de Monopoly"
+                 usemap="#image-map"
+                 id="board-img"
+                 class="img-fluid w-100 rounded-3 shadow">
+
+            <!-- 🔥 Overlay para hover -->
+            <div id="areaHighlight" aria-hidden="true"></div>
+
+            <!-- MAP integrado (solo áreas) -->
+            <map name="image-map" id="image-map">
+              <area target="_blank" alt="mediterran-avenue" title="mediterran-avenue" href="" coords="1438,1630,1300,1412" shape="rect">
+              <area target="_blank" alt="baltic-avenue" title="baltic-avenue" href="" coords="1033,1418,1170,1630" shape="rect">
+              <area target="_blank" alt="orieltal-avenue" title="orieltal-avenue" href="" coords="625,1418,756,1630" shape="rect">
+              <area target="_blank" alt="vermont-avenue" title="vermont-avenue" href="" coords="353,1418,485,1630" shape="rect">
+              <area target="_blank" alt="connecticut-avenue" title="connecticut-avenue" href="" coords="214,1415,350,1630" shape="rect">
+              <area target="_blank" alt="st.charles-place" title="st.charles-place" href="" coords="214,1281,0,1414" shape="rect">
+              <area target="_blank" alt="states-avenue" title="states-avenue" href="" coords="216,1017,0,1151" shape="rect">
+              <area target="_blank" alt="virginia-avenue" title="virginia-avenue" href="" coords="214,886,0,1017" shape="rect">
+              <area target="_blank" alt="st.james.place" title="st.james.place" href="" coords="214,618,0,744" shape="rect">
+              <area target="_blank" alt="tennessee-avenue" title="tennessee-avenue" href="" coords="218,349,0,481" shape="rect">
+              <area target="_blank" alt="new-york-avenue" title="new-york-avenue" href="" coords="215,215,0,345" shape="rect">
+              <area target="_blank" alt="kentucky-avenue" title="kentucky-avenue" href="" coords="349,211,217,1" shape="rect">
+              <area target="_blank" alt="indiana-avenue" title="indiana-avenue" href="" coords="623,216,490,-1" shape="rect">
+              <area target="_blank" alt="ellinoes-avenue" title="ellinoes-avenue" href="" coords="760,213,625,-1" shape="rect">
+              <area target="_blank" alt="atlantic-avenue" title="atlantic-avenue" href="" coords="895,215,1033,3" shape="rect">
+              <area target="_blank" alt="ventnor-avenue" title="ventnor-avenue" href="" coords="1167,218,1035,2" shape="rect">
+              <area target="_blank" alt="marvin-gardens" title="marvin-gardens" href="" coords="1303,213,1441,2" shape="rect">
+              <area target="_blank" alt="pacific-avenue" title="pacific-avenue" href="" coords="1441,349,1660,219" shape="rect">
+              <area target="_blank" alt="north-carolina-avenue" title="north-carolina-avenue" href="" coords="1441,481,1662,351" shape="rect">
+              <area target="_blank" alt="pennsylvania-avenue" title="pennsylvania-avenue" href="" coords="1438,616,1662,751" shape="rect">
+              <area target="_blank" alt="park-place" title="park-place" href="" coords="1440,1015,1662,1153" shape="rect">
+              <area target="_blank" alt="boardwalk" title="boardwalk" href="" coords="1440,1280,1662,1419" shape="rect">
+            </map>
+          </div>
+        </section>
+
+        <!-- MODAL -->
+        <div class="modal fade" id="propModal" tabindex="-1" aria-labelledby="propTitle">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-light">
+              <div class="modal-header">
+                <h5 id="propTitle" class="modal-title">Propiedad</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+              </div>
+              <div class="modal-body text-center">
+                <img id="propImg" alt="" style="max-width:100%;height:auto;border-radius:8px">
+                <p id="propMeta" class="mt-3 opacity-75"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <style>
+          .board-wrap { position: relative; }
+          /* cursor cómodo cuando hay highlight */
+          .board-wrap.hovering { cursor: pointer; }
+          /* overlay del hover */
+          #areaHighlight{
+            position: absolute;
+            left: 0; top: 0;
+            width: 0; height: 0;
+            border: 2px solid rgba(255,255,255,.95);
+            background: rgba(255,255,255,.12);
+            box-shadow: 0 0 0 2px rgba(0,0,0,.15), 0 4px 14px rgba(0,0,0,.35);
+            border-radius: 10px;
+            pointer-events: none;
+            opacity: 0;
+            transform: translateZ(0);
+            transition: opacity .15s ease, transform .08s ease, left .06s linear, top .06s linear, width .06s linear, height .06s linear;
+          }
+          /* accesibilidad por teclado */
+          map area:focus { outline: 3px solid #fff; outline-offset: 2px; }
+        </style>
+
+        <!-- JS tablero robusto + hover -->
+        <script>
+          // ---------- Config ----------
+          const BASE = '../assets/board/'; // ruta relativa consistente
+
+                    // deja esto vacío. Solo añade alias si lo necesitas.
+          const FILENAME_ALIASES = {
+            // "mediterran-avenue": "mediterranean-avenue",
+            // "orieltal-avenue": "oriental-avenue",
+            // "ellinoes-avenue": "illinois-avenue",
+            // "st.james.place": "st.james-place",
+          };
+
+          // Meta opcional (para el texto bajo la imagen del modal)
+          const EXTRA = {
+            "kentucky-avenue": { grupo: "Rojo", precio: 220 },
+            "atlantic-avenue": { grupo: "Amarillo", precio: 260 },
+            "pennsylvania-avenue": { grupo: "Verde", precio: 320 }
+          };
+
+          let recalcImageMap = null;   // función que recalcula coords
+          let areasRef = [];           // referencia a las <area> actuales
+          let imgRef = null;           // referencia al <img> del tablero
+          let currentArea = null;      // área activa para hover/focus
+
+          const boardWrap = document.querySelector('.board-wrap');
+          const highlight  = document.getElementById('areaHighlight');
+
+          (function initBoard(){
+            const img = document.getElementById('board-img');
+            const map = document.getElementById('image-map') || document.querySelector('map[name="image-map"]');
+            if(!map){ console.error('No se encontró <map id/name="image-map">'); return; }
+
+            const areas = Array.from(map.querySelectorAll('area'));
+            if(!areas.length){ console.warn('El <map> no contiene <area>.'); }
+
+            imgRef = img;
+            areasRef = areas;
+
+            // Normaliza coords rect antes de escalar
+            if (img.complete) { normalizeAreas(img, areas); }
+            else { img.addEventListener('load', ()=> normalizeAreas(img, areas)); }
+
+            // Interacción (clic + hover + teclado)
+            areas.forEach(a=>{
+              a.setAttribute('tabindex','0');
+
+              a.addEventListener('click', e => { e.preventDefault(); openCard(a); });
+
+              a.addEventListener('mouseenter', () => {
+                currentArea = a;
+                boardWrap.classList.add('hovering');
+                showHighlightFor(a);
+                preloadCard(a.getAttribute('alt'));
+              });
+              a.addEventListener('mouseleave', () => {
+                if (currentArea === a) currentArea = null;
+                boardWrap.classList.remove('hovering');
+                hideHighlight();
+              });
+
+              a.addEventListener('focus', () => { currentArea = a; showHighlightFor(a); });
+              a.addEventListener('blur',  () => { if (currentArea === a) currentArea = null; hideHighlight(); });
+
+              a.addEventListener('keydown', e=>{
+                if(e.key==='Enter' || e.key===' '){ e.preventDefault(); openCard(a); }
+              });
+            });
+
+            // Responsive image map (obtenemos función de recálculo)
+            recalcImageMap = makeResponsiveImageMap(img, areas);
+
+            // Recalcular cuando se muestre el tab (sin depender de la consola)
+            document.addEventListener('shown.bs.tab', (ev) => {
+              const isPropTab = ev.target.matches('#tab-prop,[data-bs-target="#pane-prop"]');
+              if (isPropTab) {
+                setTimeout(()=> { recalcWhenVisible(); }, 0);
+              }
+            });
+
+            // Si ya está visible al cargar
+            if (document.querySelector('#pane-prop.show.active')) {
+              recalcWhenVisible();
+            }
+
+            // Deep-link ?prop=boardwalk
+            const q = new URLSearchParams(location.search);
+            const t = q.get('prop');
+            if(t){
+              const a = areas.find(x => (x.getAttribute('alt')||'').toLowerCase()===t.toLowerCase());
+              if(a) openCard(a);
+            }
+          })();
+
+          // Recalcula solo cuando la imagen ya es visible (ancho>0)
+          function recalcWhenVisible(){
+            if (!imgRef) return;
+            let tries = 0;
+            const maxTries = 30; // ~0.5s si interval=16ms
+            const tick = () => {
+              tries++;
+              const w = imgRef.clientWidth;
+              const h = imgRef.clientHeight;
+              if (w > 0 && h > 0) {
+                if (imgRef.complete) normalizeAreas(imgRef, areasRef);
+                recalcImageMap && recalcImageMap();
+                if (currentArea) showHighlightFor(currentArea);
+                return;
+              }
+              if (tries < maxTries) requestAnimationFrame(tick);
+              else {
+                setTimeout(()=>{ 
+                  if (imgRef.complete) normalizeAreas(imgRef, areasRef);
+                  recalcImageMap && recalcImageMap();
+                  if (currentArea) showHighlightFor(currentArea);
+                }, 50);
+              }
+            };
+            requestAnimationFrame(tick);
+          }
+
+          // ---------- Hover overlay ----------
+          function showHighlightFor(area){
+            if (!highlight || !imgRef) return;
+            const raw = (area.coords||'').split(',').map(Number);
+            if (raw.length !== 4) { hideHighlight(); return; }
+            let [x1,y1,x2,y2] = raw;
+            if (x1 > x2) [x1,x2] = [x2,x1];
+            if (y1 > y2) [y1,y2] = [y2,y1];
+
+            highlight.style.left   = x1 + 'px';
+            highlight.style.top    = y1 + 'px';
+            highlight.style.width  = Math.max(0, x2-x1) + 'px';
+            highlight.style.height = Math.max(0, y2-y1) + 'px';
+            highlight.style.opacity = '1';
+            highlight.style.transform = 'translateZ(0) scale(1.015)';
+          }
+
+          function hideHighlight(){
+            if (!highlight) return;
+            highlight.style.opacity = '0';
+            highlight.style.transform = 'translateZ(0) scale(1)';
+          }
+
+          // ---------- Abrir tarjeta ----------
+          function openCard(areaEl){
+            let rawId = (areaEl.getAttribute('alt')||'').trim();
+
+            // candidatos a probar (id directo, alias y normalizaciones)
+            const candidates = uniq([
+              rawId,
+              FILENAME_ALIASES[rawId],
+              rawId.replace(/\./g,'-'),
+              rawId.replace(/\s+/g,'-'),
+              rawId.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+            ].filter(Boolean));
+
+            tryLoadImageSequential(BASE, candidates, '.png')
+              .then(({url,usedId})=>{
+                const title = (areaEl.getAttribute('title')||usedId).replace(/[-\.]/g,' ');
+                const meta  = EXTRA[usedId] ? `${EXTRA[usedId].grupo} • £${EXTRA[usedId].precio}` : '';
+                document.getElementById('propImg').src = url;
+                document.getElementById('propImg').alt = title;
+                document.getElementById('propTitle').textContent = title;
+                document.getElementById('propMeta').textContent = meta;
+                new bootstrap.Modal('#propModal').show();
+              })
+              .catch(()=>{
+                console.error('No se encontró imagen para', rawId, 'en', BASE);
+                document.getElementById('propImg').src = BASE + 'placeholder.png';
+                document.getElementById('propTitle').textContent = rawId.replace(/[-\.]/g,' ');
+                document.getElementById('propMeta').textContent = 'Sin datos';
+                new bootstrap.Modal('#propModal').show();
+              });
+          }
+
+          function preloadCard(id){
+            if(!id) return;
+            const candidates = uniq([
+              id,
+              FILENAME_ALIASES[id],
+              id.replace(/\./g,'-'),
+              id.replace(/\s+/g,'-'),
+              id.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+            ].filter(Boolean));
+            const i = new Image();
+            i.src = BASE + candidates[0] + '.png';
+          }
+
+          // ---------- Utilidades ----------
+          function tryLoadImageSequential(base, ids, ext){
+            return new Promise((resolve, reject)=>{
+              let idx = 0;
+              const tryNext = () => {
+                if (idx >= ids.length) return reject();
+                const id = ids[idx++];
+                const url = base + id + ext;
+                const img = new Image();
+                img.onload = () => resolve({url, usedId: id});
+                img.onerror = tryNext;
+                img.src = url;
+              };
+              tryNext();
+            });
+          }
+
+          // Corrige rects invertidos / fuera de rango y guarda dataset.raw "sano"
+          function normalizeAreas(img, areas){
+            const natW = img.naturalWidth || img.width;
+            const natH = img.naturalHeight || img.height;
+
+            areas.forEach(a=>{
+              const shape = (a.getAttribute('shape')||'').toLowerCase();
+              if (shape !== 'rect') return; // solo rect
+              const raw = (a.getAttribute('coords')||'').split(',').map(Number);
+              if (raw.length !== 4) return;
+
+              let [x1,y1,x2,y2] = raw;
+
+              if (x1 > x2) [x1,x2] = [x2,x1];
+              if (y1 > y2) [y1,y2] = [y2,y1];
+
+              x1 = Math.max(0, Math.min(natW, x1));
+              x2 = Math.max(0, Math.min(natW, x2));
+              y1 = Math.max(0, Math.min(natH, y1));
+              y2 = Math.max(0, Math.min(natH, y2));
+
+              const sane = [x1,y1,x2,y2].join(',');
+              a.dataset.raw = sane;
+              a.setAttribute('coords', sane);
+            });
+          }
+
+          // Reescala coords; devuelve función para recalcular cuando queramos
+          function makeResponsiveImageMap(img, areas){
+            function saveRaw(){
+              areas.forEach(a=>{
+                if(!a.dataset.raw) a.dataset.raw = a.coords;
+              });
+            }
+            function resize(){
+              const natW = img.naturalWidth || img.width;
+              const natH = img.naturalHeight || img.height;
+              const curW = img.clientWidth;
+              const curH = img.clientHeight;
+              if (!curW || !curH) return; // si está oculto, evita 0,0,0,0
+
+              areas.forEach(a=>{
+                const raw = (a.dataset.raw||'').split(',').map(Number);
+                if(!raw.length) return;
+
+                const scaled = raw.map((v,i)=> (i%2===0)
+                  ? Math.round(v * curW / natW)
+                  : Math.round(v * curH / natH)
+                );
+                a.coords = scaled.join(',');
+              });
+
+              // Si hay un área activa, reubica el highlight tras el resize
+              if (currentArea) showHighlightFor(currentArea);
+            }
+            if(img.complete){ saveRaw(); resize(); }
+            else img.addEventListener('load', ()=>{ saveRaw(); resize(); });
+
+            window.addEventListener('resize', resize);
+            return resize; // la guardamos para usar al mostrar el tab
+          }
+
+          // util: elimina duplicados conservando orden
+          function uniq(arr){
+            const s = new Set();
+            return arr.filter(x=> (x!=null && x!=='' && !s.has(x) && s.add(x)));
+          }
+        </script>
+        <!-- 🔹 FIN TABLERO INTERACTIVO 🔹 -->
+
+        <!-- CONTENIDO ORIGINAL DEL TAB -->
+        <h2 class="h4 mb-3">Propiedades por color</h2>
+        <p class="text-muted">Completar un color te da un <strong>monopolio</strong>. Con monopolio puedes construir y el alquiler sube mucho.</p>
+
+        <!-- (Aquí siguen tus tarjetas de grupos de color, igual que antes) -->
+      </div>
+
+      <!-- ====== CASAS & HOTELES ====== -->
+<!-- ================== TAB: CASAS & HOTELES ================== -->
+<div class="tab-pane fade" id="pane-cyh" role="tabpanel" aria-labelledby="tab-cyh">
+
+  <h3 class="mt-4">Casas & Hoteles</h3>
+
+  <div class="row g-4 align-items-start">
+    <!-- Vista principal -->
+    <div class="col-lg-7">
+      <div class="card bg-dark-subtle border-0 shadow-sm">
+        <img id="cyhMainImg"
+             class="card-img-top img-fluid rounded-top"
+             src="../assets/casas-hoteles/casa_1.png"
+             alt="Una casa verde sobre la propiedad" />
+        <div class="card-body">
+          <p id="cyhCaption" class="text-muted mb-0">
+            Una casa verde sobre la propiedad.
+          </p>
+        </div>
+      </div>
+
+      <!-- Evolución / miniaturas -->
+      <div class="mt-3">
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <span class="badge text-bg-secondary">Evolución</span>
+          <small class="text-muted">De 1 casa → 4 casas → hotel</small>
+        </div>
+
+        <div class="d-flex flex-wrap gap-3">
+          <!-- 1 casa -->
+          <button class="btn btn-outline-secondary cyh-thumb"
+                  type="button"
+                  data-src="../assets/casas-hoteles/casa_1.png"
+                  data-alt="Una casa verde sobre la propiedad">
+            <img src="../assets/casas-hoteles/casa_1.png" alt="1 casa" width="64" height="64" class="rounded">
+          </button>
+
+          <!-- 2 casas -->
+          <button class="btn btn-outline-secondary cyh-thumb"
+                  type="button"
+                  data-src="../assets/casas-hoteles/casa_2.png"
+                  data-alt="Dos casas verdes sobre la propiedad">
+            <img src="../assets/casas-hoteles/casa_2.png" alt="2 casas" width="64" height="64" class="rounded">
+          </button>
+
+          <!-- 3 casas -->
+          <button class="btn btn-outline-secondary cyh-thumb"
+                  type="button"
+                  data-src="../assets/casas-hoteles/casa_3.png"
+                  data-alt="Tres casas verdes sobre la propiedad">
+            <img src="../assets/casas-hoteles/casa_3.png" alt="3 casas" width="64" height="64" class="rounded">
+          </button>
+
+          <!-- 4 casas -->
+          <button class="btn btn-outline-secondary cyh-thumb"
+                  type="button"
+                  data-src="../assets/casas-hoteles/casa_4.png"
+                  data-alt="Cuatro casas verdes sobre la propiedad">
+            <img src="../assets/casas-hoteles/casa_4.png" alt="4 casas" width="64" height="64" class="rounded">
+          </button>
+
+          <!-- Hotel -->
+          <button class="btn btn-outline-warning cyh-thumb"
+                  type="button"
+                  data-src="../assets/casas-hoteles/hotel_rojo.png"
+                  data-alt="Hotel rojo sobre la propiedad">
+            <img src="../assets/casas-hoteles/hotel_rojo.png" alt="Hotel" width="64" height="64" class="rounded">
+          </button>
+       
+        </div>
+      </div>
+    </div>
+
+    <!-- Reglas y costos -->
+    <div class="col-lg-5">
+      <div class="card border-0 shadow-sm mb-3">
+        <div class="card-header fw-semibold">Reglas esenciales</div>
+        <div class="card-body">
+          <ul class="mb-0">
+            <li>Solo puedes construir cuando posees el <strong>monopolio</strong> del color.</li>
+            <li>Construye de forma <strong>equilibrada</strong> entre propiedades del mismo grupo.</li>
+            <li><strong>Máximo 4 casas</strong> por propiedad; luego puedes <strong>convertir a hotel</strong> devolviendo las 4 casas.</li>
+            <li>Si la banca se queda sin casas/hoteles, se subastan al mejor postor (regla clásica).</li>
+          </ul>
+        </div>
+      </div>
+
+  <!-- ================== /TAB: CASAS & HOTELES ================== -->
+
+  </main>
+
+  <!-- Modal para zoom de fichas -->
+<div class="modal fade image-lightbox" id="tokenModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content position-relative bg-transparent border-0 shadow-none">
+      <button type="button" class="btn-close bg-white rounded-circle" data-bs-dismiss="modal" aria-label="Cerrar" style="position:absolute;top:20px;right:20px;opacity:.9;"></button>
+      <div class="modal-body d-flex justify-content-center align-items-center p-0">
+        <img id="tokenFullImg" src="" alt="" style="width:min(90vw,800px);max-height:85vh;border-radius:10px;box-shadow:0 30px 60px rgba(0,0,0,.7);">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/scripts.js"></script>
+
+    <script>
+    (() => {
+  const main = document.getElementById('cyhMainImg');
+  const caption = document.getElementById('cyhCaption');
+  document.querySelectorAll('.cyh-thumb').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const src = btn.getAttribute('data-src');
+      const alt = btn.getAttribute('data-alt') || '';
+      if (main) { main.src = src; main.alt = alt; }
+      if (caption) caption.textContent = alt || 'Vista seleccionada';
+    });
+  });
+
+      const zoomBtn = document.getElementById('cyhZoomBtn');
+      const modalImg = document.getElementById('galleryModalImg');
+      const modalDesc = document.getElementById('galleryModalDesc');
+      if (zoomBtn && modalImg && modalDesc) {
+        zoomBtn.addEventListener('click', () => {
+          modalImg.src = main.src;
+          modalDesc.textContent = main.alt || '';
+        });
+      }
+      colorSel.addEventListener('change', renderCost);
+      nivelSel.addEventListener('change', renderCost);
+      renderCost();
+    })();
+  </script>
+
+  
+<!-- 🔍 Script para zoom de imágenes -->
+<script>
+(function () {
+  function ready(fn){ document.readyState !== 'loading' ? fn() : document.addEventListener('DOMContentLoaded', fn); }
+
+  ready(() => {
+    const modalEl = document.getElementById('tokenModal');
+    if (!modalEl) return;
+
+    const bsModal = new bootstrap.Modal(modalEl, { backdrop: true, focus: true });
+    const fullImg  = document.getElementById('tokenFullImg');
+
+    // Intenta cargar varias rutas en orden hasta que una funcione
+    function loadSequential(urls){
+      return new Promise((resolve, reject) => {
+        let i = 0, ok = false;
+        const tryNext = () => {
+          if (i >= urls.length) return reject(new Error('No image'));
+          const u = urls[i++];
+          const probe = new Image();
+          probe.onload  = () => { ok = true; resolve(u); };
+          probe.onerror = tryNext;
+          probe.src = u;
+        };
+        tryNext();
+      });
+    }
+
+    document.addEventListener('click', (ev) => {
+      const img = ev.target.closest('.token-thumb');
+      if (!img) return;
+
+      // Candidatas: data-full -> currentSrc -> src (resueltas absolutas)
+      const raw = [
+        img.getAttribute('data-full'),
+        img.currentSrc,
+        img.src
+      ].filter(Boolean).map(u => {
+        try { return new URL(u, location.href).href; } catch(e) { return u; }
+      });
+
+      fullImg.style.display = 'none';
+      fullImg.removeAttribute('src');
+
+      loadSequential(raw).then(bestUrl => {
+        fullImg.onload = () => { fullImg.style.display = 'block'; };
+        fullImg.src = bestUrl;
+        fullImg.alt = img.alt || 'Ficha';
+        bsModal.show();
+      }).catch(() => {
+        // Si nada carga, cerramos limpio para que no quede “congelado”
+        bsModal.hide();
+        console.warn('No se pudo cargar ninguna ruta de imagen:', raw);
+      });
+    });
+
+    modalEl.addEventListener('hidden.bs.modal', () => {
+      fullImg.removeAttribute('src');   // libera y evita congelados
+      fullImg.style.display = 'none';
+    });
+  });
+})();
+</script>
+
+
+
+  <footer class="bg-dark text-light py-4 mt-5">
+    <div class="container text-center">
+      <p class="mb-0">&copy; 2025 Mundo Monopoly</p>
+    </div>
+  </footer>
+
+  <!-- Dependencias -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/scripts.js"></script>
+
+  <!-- Descripciones de fichas (para el zoom de Fichas) -->
+  <script>
+    const DESCRIPCIONES = {
+      "scottie-dog": "El perro terrier escocés, una de las fichas más queridas y reconocibles del juego.",
+      "racecar": "Coche de carreras clásico descapotable, símbolo de velocidad y estilo dentro del tablero.",
+      "top-hat": "Sombrero de copa, emblema de elegancia y riqueza en la estética clásica de Monopoly.",
+      "battleship": "Barco de guerra con cañones visibles; sensación de poder y aventura.",
+      "boot": "Zapato de estilo antiguo; representa esfuerzo y trabajo.",
+      "wheelbarrow": "Carretilla de mano con rueda frontal; símbolo de construcción.",
+      "iron": "Plancha de ropa antigua, ícono doméstico de las primeras versiones.",
+      "cannon": "Cañón antiguo, asociado a estrategia y fuerza (retirado en ediciones modernas).",
+      "thimble": "Dedal clásico; precisión y esfuerzo. Muy popular en las primeras ediciones.",
+      "horse-and-rider": "Jinete en caballo encabritado; espíritu de aventura del Lejano Oeste."
+    };
+  </script>
+
+  <!-- Script UNICO: zoom (Fichas + Casas&Hoteles) + miniaturas + calculadora -->
+  <script>
+  (function () {
+    function ready(fn){ document.readyState !== 'loading' ? fn() : document.addEventListener('DOMContentLoaded', fn); }
+
+    ready(() => {
+      /* =======================
+         ZOOM usando #galleryModal
+         - Fichas: cualquier .token-thumb
+         - Casas&Hoteles: botón #buildZoomBtn (si existe)
+      ======================= */
+      const gModalEl   = document.getElementById('galleryModal');
+      const gModalImg  = document.getElementById('galleryModalImg');
+      const gModalDesc = document.getElementById('galleryModalDesc');
+
+      function showInModal(src, desc){
+        if (!gModalEl || !gModalImg) return;
+        gModalImg.src = src;
+        if (gModalDesc) gModalDesc.textContent = desc || 'Vista ampliada';
+        if (window.bootstrap?.Modal) {
+          bootstrap.Modal.getOrCreateInstance(gModalEl).show();
+        } else {
+          gModalEl.classList.add('show');
+        }
+      }
+
+      // 1) Fichas: delegación sobre .token-thumb
+      document.addEventListener('click', (ev) => {
+        const img = ev.target.closest('.token-thumb');
+        if (!img) return;
+        const full = img.getAttribute('data-full') || img.currentSrc || img.src;
+        // Si usas data-token para mapear descripciones:
+        const tokenKey = img.getAttribute('data-token');
+        const desc = (tokenKey && DESCRIPCIONES[tokenKey]) || img.getAttribute('data-desc') || img.alt || '';
+        showInModal(full, desc);
+      });
+
+      // 2) Casas & Hoteles: botón de zoom
+      const buildZoomBtn = document.getElementById('buildZoomBtn');
+      const buildHeroImg = document.getElementById('buildHeroImg');
+      const buildHeroLabel = document.getElementById('buildHeroLabel');
+      if (buildZoomBtn && buildHeroImg) {
+        buildZoomBtn.addEventListener('click', () => {
+          const full = buildHeroImg.getAttribute('data-full') || buildHeroImg.src;
+          const desc = buildHeroLabel?.textContent || buildHeroImg.alt || '';
+          showInModal(full, desc);
+        });
+      }
+
+      /* =======================
+         Miniaturas Casas & Hoteles
+      ======================= */
+      const thumbsUl = document.querySelector('.thumb-list');
+      if (thumbsUl && buildHeroImg && buildHeroLabel) {
+        thumbsUl.addEventListener('click', (ev) => {
+          const btn = ev.target.closest('.thumb');
+          if (!btn) return;
+          thumbsUl.querySelectorAll('.thumb').forEach(t => t.classList.remove('is-active'));
+          btn.classList.add('is-active');
+
+          const src   = btn.getAttribute('data-src');
+          const label = btn.getAttribute('data-label') || '';
+          buildHeroImg.src = src;
+          buildHeroImg.setAttribute('data-full', src);
+          buildHeroLabel.textContent = label;
+        });
+      }
+
+      /* =======================
+         Calculadora simple (Casas & Hoteles)
+      ======================= */
+      const selColor = document.getElementById('colorGroup') || document.getElementById('cyhColor');
+      const selLevel = document.getElementById('buildLevel') || document.getElementById('cyhNivel');
+      const outCost  = document.getElementById('costResult') || document.getElementById('cyhCostOut');
+
+      function renderCost(){
+        if (!selColor || !selLevel || !outCost) return;
+        const base = parseInt(selColor.value, 10) || 50;
+        const casaTxt  = `Casa: <strong class="text-gold">$${base}</strong> por propiedad.`;
+        const hotelTxt = `Hotel: <strong class="text-gold">$${base}</strong> por propiedad <span class="text-muted">(se devuelven 4 casas)</span>.`;
+        outCost.innerHTML = `${casaTxt}<br>${hotelTxt}`;
+      }
+      renderCost();
+      selColor?.addEventListener('change', renderCost);
+      selLevel?.addEventListener('change', renderCost);
+    });
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1739 @@
+/* Variables para tema claro/oscuro */
+:root {
+    /* Colores de marca */
+    --primary-color: #E30613;    /* Rojo Monopoly */
+    --secondary-color: #1CA261;  /* Verde Monopoly */
+    --accent-color: #C2A46F;     /* Dorado Monopoly */
+    
+    /* Tema claro por defecto */
+    --text-color: #333333;
+    --text-muted: #666666;
+    --bg-color: #ffffff;
+    --nav-bg: #ffffff;
+    --card-bg: #ffffff;
+    --border-color: #dee2e6;
+    --hover-bg: #f8f9fa;
+    --shadow-color: rgba(0,0,0,0.1);
+}
+
+/* Tema oscuro */
+[data-theme="dark"] {
+    --text-color: #ffffff;
+    --text-muted: #bbbbbb;
+    --bg-color: #1a1a1a;
+    --nav-bg: #2d2d2d;
+    --card-bg: #2d2d2d;
+    --border-color: #404040;
+    --hover-bg: #363636;
+    --shadow-color: rgba(0,0,0,0.3);
+}
+
+/* Transiciones suaves para cambio de tema */
+body, nav, .card, .btn, .accordion-item {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Estilos globales */
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    transition: background-color 0.3s ease;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--secondary-color);
+}
+
+/* Mejoras de accesibilidad */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Focus visible mejorado */
+:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Navbar personalizada */
+.navbar {
+    background-color: var(--nav-bg);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Hero section */
+.hero {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 4rem 0;
+}
+
+/* Cards y elementos */
+.card {
+    background-color: var(--card-bg);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Carrusel personalizado: mostrar todas las diapositivas con la misma altura visual
+   - El contenedor de cada slide tiene una altura fija (ajustable) y centra la imagen
+   - Las imágenes se escalan manteniendo la proporción y no se recortan */
+.carousel {
+    max-width: 100%;
+}
+/* Carrusel SOLO del hero (inicio) */
+#heroCarousel .carousel-inner{
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+#heroCarousel .carousel-item{
+  height: 500px;            /* ajusta a tu gusto */
+  /* NO pongas display aquí */
+}
+
+#heroCarousel .carousel-item img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;         /* recorta proporcionalmente */
+  display: block;
+}
+
+
+/* Fix específico para el carrusel de Historia */
+#historiaCarousel .carousel-inner{
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+#historiaCarousel .carousel-item{
+  height: 420px;            /* ajusta si quieres */
+  /* NO pongas display aquí */
+}
+
+#historiaCarousel .carousel-item img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;        /* recorte proporcional */
+  display: block;
+}
+
+/* opcional: indicadores más visibles */
+#historiaCarousel .carousel-indicators [data-bs-target]{
+  width: 36px;
+  height: 4px;
+  border-radius: 999px;
+}
+
+
+/* Footer */
+footer {
+    background-color: var(--nav-bg);
+    color: var(--text-color);
+    padding: 2rem 0;
+}
+
+/* Utilidades */
+.text-primary-monopoly {
+    color: var(--primary-color);
+}
+
+.bg-primary-monopoly {
+    background-color: var(--primary-color);
+}
+
+/* Efectos hover */
+.hover-effect {
+    transition: all 0.3s ease;
+}
+
+.hover-effect:hover {
+    color: var(--primary-color);
+}
+
+/* Accesibilidad */
+.focus-visible:focus {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* --- Popovers personalizados (Historia) --- */
+.popover.pop-person {
+    max-width: 260px;          /* ancho máximo del popover */
+    border: 2px solid #E30613; /* rojo Monopoly */
+    border-radius: 8px;
+}
+
+.pop-person .popover-body {
+    padding: 0; /* elimina espacio extra */
+}
+
+.pop-person .popover-body .pop-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+}
+
+@media (max-width: 576px) {
+    .popover.pop-person { max-width: 200px; }
+}
+
+/* --- Piezas / Propiedades --- */
+.rule-card img { object-fit: cover; }
+
+.prop-badge {
+  display:inline-block; padding:.25rem .6rem; border-radius:999px;
+  font-size:.75rem; font-weight:600; color:#fff;
+}
+.prop-brown{ background:#8B4513; }
+.prop-lightblue{ background:#3ec2f3; }
+.prop-red{ background:#E30613; }
+.prop-green{ background:#1CA261; }
+.prop-black{ background:#333; }
+.prop-gray{ background:#6c757d; }
+
+/* Que todas las imágenes de tarjetas respeten la proporción */
+.card .ratio > img { width:100%; height:100%; object-fit:cover; }
+
+/* Imagen que llena el contenedor ratio manteniendo recorte elegante */
+.img-cover{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* Que cada pestaña tenga al menos media pantalla para empujar el footer */
+.tab-content{
+  min-height:60vh;
+}
+
+/* Footer pegado al fondo en páginas con poco contenido */
+html, body{ height:100%; }
+body{
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+}
+main{ flex:1 0 auto; }
+footer{ margin-top:auto; }
+
+/* Ajuste visual de las imágenes de propiedades para evitar recorte excesivo */
+.small-img {
+  max-height: 220px;       /* altura controlada para mantener proporción */
+  overflow: hidden;        /* evita desbordamiento */
+  border-radius: 0.5rem;   /* bordes suaves */
+}
+
+/* Aplica a las imágenes internas */
+.small-img img,
+.img-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;     /* muestra la imagen completa dentro del marco */
+  object-position: center; /* centra la imagen si sobra espacio */
+}
+
+/* Mejora general del grid visual */
+.rule-card img {
+  transition: transform 0.3s ease;
+}
+.rule-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Marco uniforme para todas las tarjetas de "Propiedades por color" */
+.rule-card .media {
+  height: 230px;           /* alto consistente del área de imagen */
+  overflow: hidden;
+  border-radius: .75rem;
+  background: var(--bs-body-bg);
+}
+
+/* Comportamiento por defecto: fotos "ambientales" -> cubrir */
+.rule-card .media > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;       /* recorte agradable para fotos */
+  object-position: center;
+  display: block;
+}
+
+/* Para imágenes planas/escaneos: mostrar todo sin recortar */
+.rule-card .media.fit-contain > img {
+  object-fit: contain;     /* NO recortes */
+  background: var(--bs-gray-100);
+  padding: 6px;            /* respiración para bordes blancos/negros */
+}
+
+/* Toque visual */
+.rule-card img { transition: transform .25s ease; }
+.rule-card:hover img { transform: scale(1.03); }
+
+/* === Productos: helpers para controlar el recorte y responsividad === */
+
+/* Cambiar el foco del recorte por tarjeta cuando la imagen es “más grande” */
+.img-focus-top    { object-position: 50% 20%; }  /* sube el foco */
+.img-focus-bottom { object-position: 50% 80%; }
+.img-focus-left   { object-position: 20% 50%; }
+.img-focus-right  { object-position: 80% 50%; }
+
+/* Hover suave solo en el grid de productos */
+#gridProductos .product-card .ratio > img{
+  transition: transform .25s ease, filter .25s ease;
+}
+#gridProductos .product-card .ratio > img:hover{
+  transform: scale(1.03);
+  filter: brightness(1.04);
+}
+
+/* En móviles, hacemos las miniaturas un poco más altas (4:3) */
+@media (max-width: 576px){
+  #gridProductos .ratio{ --bs-aspect-ratio: 75%; } /* 4/3 */
+}
+
+/* ==== SECCIÓN: NOTICIAS ==== */
+
+/* Contenedor de la tarjeta de noticia */
+.news-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background-color: var(--card-bg);
+  box-shadow: 0 2px 6px var(--shadow-color);
+}
+
+.news-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.18);
+}
+
+/* Imagen uniforme (miniatura) */
+.news-card .ratio {
+  border-top-left-radius: 0.75rem;
+  border-top-right-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.news-card .ratio img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;       /* recorta pero mantiene proporción */
+  object-position: center; /* centra el recorte */
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.news-card:hover .ratio img {
+  transform: scale(1.05);
+  filter: brightness(1.05);
+}
+
+/* Contenido */
+.news-card .card-body {
+  padding: 1rem 1.1rem 1.25rem;
+}
+
+.news-card .card-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-color);
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+
+.news-card .card-text {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.news-card .btn {
+  font-size: 0.85rem;
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+}
+
+/* Imagen responsive */
+@media (max-width: 576px) {
+  .news-card .ratio {
+    --bs-aspect-ratio: 75%; /* 4:3 en móvil */
+  }
+}
+
+/* === Fin sección de noticias === */
+
+/* === Botones de redes sociales (Contacto) === */
+.social-links .btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+/* Colores oficiales */
+.social-links .btn-facebook {
+  background-color: #1877F2;
+  color: #fff;
+}
+.social-links .btn-facebook:hover {
+  background-color: #0d5bd9;
+}
+
+.social-links .btn-x {
+  background-color: #000;
+  color: #fff;
+}
+[data-theme="dark"] .social-links .btn-x {
+  background-color: #e6e6e6;
+  color: #000;
+}
+.social-links .btn-x:hover {
+  opacity: 0.8;
+}
+
+.social-links .btn-instagram {
+  background: radial-gradient(circle at 30% 107%, 
+    #fdf497 0%, #fdf497 5%, 
+    #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  color: white;
+}
+.social-links .btn-instagram:hover {
+  filter: brightness(1.15);
+}
+
+.social-links .btn-youtube {
+  background-color: #FF0000;
+  color: #fff;
+}
+.social-links .btn-youtube:hover {
+  background-color: #cc0000;
+}
+
+/* Sombra suave y animación al pasar */
+.social-links .btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* ===== Footer Social Section ===== */
+.footer-social {
+  text-align: center;
+}
+
+.footer-social h5 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: var(--text-color);
+}
+
+.footer-social .social-links {
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.footer-social .social-links .btn {
+  width: 44px;
+  height: 44px;
+  font-size: 1.25rem;
+}
+
+/* En pantallas grandes: alineación a la izquierda */
+@media (min-width: 768px) {
+  .footer-social {
+    text-align: left;
+  }
+  .footer-social .social-links {
+    justify-content: flex-start;
+  }
+}
+
+/* ==== Footer ajustes finales ==== */
+
+/* Alineación y equilibrio entre columnas */
+footer .col-md-4 {
+  min-height: 120px;
+}
+
+/* Corregir color del icono X (Twitter/X) */
+.btn-x i {
+  color: #fff !important;
+}
+[data-theme="dark"] .btn-x i {
+  color: #000 !important;
+}
+
+/* En pantallas pequeñas: todo centrado */
+@media (max-width: 767px) {
+  footer .footer-social {
+    margin-top: 1.5rem;
+  }
+}
+
+/* Icono X visible sobre el botón negro */
+.btn-x i { color: #fff !important; }
+[data-theme="dark"] .btn-x { background-color: #e6e6e6; color: #000; }
+[data-theme="dark"] .btn-x i { color: #000 !important; }
+
+/* Limita ancho del footer para que las 3 columnas queden con separaciones parejas */
+.footer-columns { max-width: 1100px; }
+
+/* Ajuste fino de separación visual entre columnas */
+@media (min-width: 768px) {
+  .footer-columns .row { row-gap: 2rem; } /* vertical */
+}
+
+/* Tamaños consistentes para los botones sociales */
+.footer-social .social-links .btn { width: 44px; height: 44px; font-size: 1.25rem; }
+
+/* Footer: compactar ancho para balancear las 3 columnas */
+.container.footer-columns { max-width: 1040px; }  /* 👈 más estrecho que el container XXL */
+@media (min-width: 1200px) { .container.footer-columns { max-width: 1040px; } }
+@media (min-width: 1400px) { .container.footer-columns { max-width: 1040px; } }
+
+/* Icono de X visible sobre el botón */
+.btn-x i { color: #fff !important; }
+[data-theme="dark"] .btn-x { background-color: #e6e6e6; color: #000; }
+[data-theme="dark"] .btn-x i { color: #000 !important; }
+
+/* ===== HERO INTRO minimal ===== */
+.hero-intro {
+  position: relative;
+  height: 92vh;
+  min-height: 520px;
+  overflow: hidden;
+  isolation: isolate;
+}
+.hero-intro .hero-bg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  transition: transform .9s ease, opacity .6s ease;
+  filter: saturate(1.05);
+}
+.hero-intro .hero-overlay {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 2rem 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,.25), rgba(0,0,0,.45));
+  color: #fff;
+}
+.hero-title { font-weight: 700; letter-spacing: .3px; }
+.hero-subtitle { max-width: 720px; margin: 0 auto; }
+
+.hero-metrics {
+  display: flex; gap: 1.25rem; flex-wrap: wrap; justify-content: center;
+}
+.hero-metrics .metric { text-align: center; min-width: 120px; }
+
+/* Estado: animando zoom */
+.hero-zooming .hero-intro .hero-bg { transform: scale(1.18); }
+.hero-zooming .hero-intro .hero-overlay { opacity: 0; transition: opacity .6s ease; }
+
+/* Estado: contenido revelado */
+.home-content {
+  opacity: 0; transform: translateY(8px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+.home-ready .home-content { opacity: 1; transform: none; }
+.is-hidden { display: none !important; }
+
+/* Respetar accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .hero-intro .hero-bg { transition: none; }
+  .home-content { transition: none; }
+}
+
+/* ===== Tarjetas minimal ===== */
+.step-card, .tile-card, .product-flat {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: .75rem;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  box-shadow: 0 1px 2px var(--shadow-color);
+}
+.step-card:hover, .tile-card:hover, .product-flat:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px var(--shadow-color);
+  border-color: rgba(0,0,0,.08);
+}
+
+/* Tiles 2x2 */
+.tile-card {
+  display: block; text-decoration: none; color: inherit; overflow: hidden;
+}
+.tile-card .tile-media { aspect-ratio: 16/9; overflow: hidden; }
+.tile-card .tile-media img { width:100%; height:100%; object-fit: cover; display:block; }
+.tile-card .tile-body { padding: 1rem; display:flex; align-items:center; justify-content:space-between; }
+.tile-card .tile-body h3 { font-size: 1.15rem; margin: 0; }
+.tile-card .link { color: var(--primary-color); font-weight: 600; }
+
+/* Chips de estrategia */
+.chip {
+  display:inline-flex; align-items:center; gap:.4rem;
+  padding:.45rem .75rem; border:1px solid var(--border-color);
+  border-radius: 999px; font-size:.9rem; background: var(--card-bg);
+}
+
+/* Imágenes dentro de ratio */
+.img-cover { width:100%; height:100%; object-fit: cover; }
+
+/* Footer compacto (ya lo tenías; añadimos contenedor más estrecho si quieres) */
+.container.footer-columns { max-width: 1040px; }
+@media (min-width: 1200px) { .container.footer-columns { max-width: 1040px; } }
+@media (min-width: 1400px) { .container.footer-columns { max-width: 1040px; } }
+
+/* Botón X (Twitter) contrastado */
+.btn-x i { color: #fff !important; }
+[data-theme="dark"] .btn-x { background-color: #e6e6e6; color: #000; }
+[data-theme="dark"] .btn-x i { color: #000 !important; }
+
+/* ===== Hero con video ===== */
+.hero-intro { position: relative; height: 92vh; min-height: 520px; overflow: hidden; isolation: isolate; }
+.hero-intro .hero-video{
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; background: #000; display: block;
+}
+/* Overlay por encima del video/poster */
+.hero-intro .hero-overlay{
+  position: relative; z-index: 2; height: 100%;
+  display: grid; place-items: center; padding: 2rem 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,.25), rgba(0,0,0,.45));
+  color: #fff; transition: opacity .35s ease;
+}
+/* Atenuar un poco el overlay mientras el video corre (se ve más el video) */
+body.video-playing .hero-intro .hero-overlay { opacity: .88; }
+
+/* Estados que ya usas para revelar el contenido */
+.home-content { opacity: 0; transform: translateY(8px); transition: opacity .5s ease, transform .5s ease; }
+.home-ready .home-content { opacity: 1; transform: none; }
+.is-hidden { display: none !important; }
+
+/* Botón: Saltar intro */
+.skip-intro{
+  position: absolute; right: 1rem; bottom: 1rem; z-index: 3;
+  padding: .55rem .9rem; border-radius: .6rem; border: 1px solid var(--border-color);
+  background: rgba(255,255,255,.9); color: #111; font-weight: 600; font-size: .95rem;
+  backdrop-filter: blur(6px); box-shadow: 0 4px 16px var(--shadow-color);
+  transition: transform .15s ease, box-shadow .15s ease, background .2s ease;
+}
+.skip-intro:hover{ transform: translateY(-1px); box-shadow: 0 10px 24px var(--shadow-color); }
+.skip-intro:focus-visible{ outline: 3px solid var(--primary-color); outline-offset: 2px; }
+[data-theme="dark"] .skip-intro{ background: rgba(20,22,26,.85); color: #f0f0f0; border-color: #333a44; }
+
+/* Accesibilidad: menos movimiento */
+@media (prefers-reduced-motion: reduce){
+  .hero-intro .hero-overlay { transition: none; }
+  .home-content { transition: none; }
+}
+
+/* ===== Vitrina continua (ediciones destacadas) ===== */
+.ediciones-slider .product-flat {
+  min-width: clamp(260px, 28vw, 360px);  /* ~3 visibles en desktop */
+  margin: 0 .75rem;
+  flex: 0 0 auto;
+  box-shadow: 0 6px 18px var(--shadow-color);
+  border: 1px solid var(--border-color);
+  border-radius: .75rem;
+  overflow: hidden;
+  background: var(--card-bg);
+}
+.ediciones-slider .product-flat .ratio > img { object-fit: cover; }
+
+/* Contenedor que recorta el deslizamiento */
+.marquee {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: .25rem 0;
+}
+
+/* Pista que se mueve */
+.marquee-track {
+  --px-per-sec: 60;               /* velocidad (px/s). Ajusta a tu gusto */
+  display: flex;
+  align-items: stretch;
+  will-change: transform;
+  animation: marquee-scroll linear infinite;
+  gap: 0;                          /* los márgenes están en las cards */
+}
+
+/* Pausar al pasar el mouse (opcional) */
+.marquee:hover .marquee-track { animation-play-state: paused; }
+
+/* Animación: el JS define la duración exacta según el ancho total */
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-1 * var(--marquee-shift, 100%))); }
+}
+
+/* Modo oscuro coherente */
+[data-theme="dark"] .ediciones-slider .product-flat {
+  border-color: #333a44;
+}
+
+/* Accesibilidad: reducir movimiento */
+@media (prefers-reduced-motion: reduce){
+  .marquee-track { animation: none !important; }
+}
+
+/* Brillo diagonal (shine) al pasar el cursor */
+.ediciones-slider .product-flat{
+  position: relative;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.ediciones-slider .product-flat::after{
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.18) 40%, transparent 80%);
+  transform: translateX(-120%);
+  transition: transform .6s ease;
+  pointer-events: none;
+  mix-blend-mode: screen; /* se ve bien en light/dark */
+}
+.ediciones-slider .product-flat:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px var(--shadow-color);
+  border-color: rgba(227, 6, 19, .35); /* rojo Monopoly sutil */
+}
+.ediciones-slider .product-flat:hover::after{
+  transform: translateX(120%);
+}
+
+/* Parpadeo de sombra más suave en dark */
+[data-theme="dark"] .ediciones-slider .product-flat{
+  box-shadow: 0 6px 18px rgba(0,0,0,.35);
+  border-color: #2a3340;
+}
+
+/* Dirección por defecto */
+.marquee-track { animation-direction: normal; }
+/* Cuando JS agregue la clase .rev, invertimos la dirección */
+.marquee-track.rev { animation-direction: reverse; }
+
+/* Intro: pantalla completa */
+.hero-intro{
+  position:relative;
+  height:100svh;            /* usa la altura real del viewport en móviles */
+  width:100%;
+  overflow:hidden;
+  isolation:isolate;
+  background:#000;
+}
+
+/* Media: video o fallback */
+.hero-intro .hero-media{ position:absolute; inset:0; }
+.hero-intro video,
+.hero-intro .hero-fallback{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover;          /* ¡que cubra! */
+  display:block;
+}
+
+/* Overlay centrado con sólo el botón */
+.hero-intro .hero-overlay{
+  position:relative;
+  z-index:2;
+  height:100%;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(to bottom, rgba(0,0,0,.25), rgba(0,0,0,.35));
+}
+
+/* Cuando la home ya está lista, NO mostrar intro */
+html.home-ready #introHero,
+body.home-ready #introHero{ display:none !important; }
+
+/* Evita “salto” al revelar contenido principal (suave) */
+.home-reveal { animation: fadeIn .35s ease-out both; }
+@keyframes fadeIn { from {opacity:0; transform:translateY(8px)} to {opacity:1; transform:none} }
+
+/* Hero video: asegurar cobertura total */
+.hero-intro { height: 100svh; width: 100%; overflow: hidden; background:#000; }
+.hero-intro .hero-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+
+/* Mostrar solo el botón Entrar en la intro */
+.hero-intro .hero-logo,
+.hero-intro .hero-title,
+.hero-intro .hero-subtitle,
+.hero-intro .hero-metrics,
+#playIntro,
+#toggleSound { display: none !important; }
+
+/* Ocultar por completo el intro si ya fue visto (evita parpadeo al navegar) */
+html.home-ready #introHero,
+body.home-ready #introHero { display: none !important; }
+
+/* --- Intro full-screen --- */
+.navbar { position: relative; z-index: 1200; } /* navbar por encima */
+
+/* Intro full-screen */
+.hero-intro{ position:fixed; inset:0; z-index:1100; background:#000; overflow:hidden; }
+.hero-intro .hero-video{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; }
+
+/* Overlay centrado (solo botón) */
+.hero-intro .hero-overlay{
+  position:absolute; inset:0; display:grid; place-items:center;
+  transition: opacity .35s ease;
+}
+
+/* Cuando empieza a reproducir, oculta overlay (se ve solo el video) */
+.hero-intro.playing .hero-overlay{ opacity:0; pointer-events:none; }
+
+/* Cuando la home está lista, oculta la intro */
+.home-ready .hero-intro{ display:none; }
+
+/* (OPCIONAL) Oculta controles que no quieres ver en el intro */
+#playIntro, #toggleSound, #skipIntro, .hero-metrics{ display:none !important; }
+
+/* === NAVBAR ESTILO CARBON MATTE === */
+.bg-carbon {
+  background: linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 100%) !important;
+  color: #f8f9fa !important;
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Logo estilo Monopoly */
+.logo-monopoly {
+  background-color: #e50914;
+  padding: 6px 12px;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Links */
+.navbar .nav-link {
+  color: #e0e0e0 !important;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  transition: color 0.25s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: #ff3b3b !important;
+}
+
+/* Botón modo oscuro */
+.navbar .btn-outline-light {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #f5f5f5;
+}
+
+.navbar .btn-outline-light:hover {
+  background-color: #e50914;
+  border-color: #e50914;
+}
+
+/* Modo claro */
+.light-theme .navbar.bg-carbon {
+  background: #f8f9fa !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.light-theme .navbar .nav-link {
+  color: #222 !important;
+}
+
+.light-theme .navbar .nav-link:hover,
+.light-theme .navbar .nav-link.active {
+  color: #e50914 !important;
+}
+
+/* Barra matte oscura */
+.navbar-carbon {
+  background: linear-gradient(180deg, #0f1113 0%, #1a1d21 100%);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  box-shadow: 0 6px 24px rgba(0,0,0,.25);
+}
+
+.navbar-carbon .navbar-brand img {
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,.35));
+}
+
+/* Colores de enlaces en barra oscura */
+.navbar-carbon .nav-link {
+  color: rgba(255,255,255,.85);
+  padding: .4rem .65rem;
+  border-radius: .5rem;
+  transition: color .2s ease, background-color .2s ease, transform .15s ease;
+}
+
+.navbar-carbon .nav-link:hover {
+  color: #fff;
+  background: rgba(255,255,255,.06);
+}
+
+.navbar-carbon .nav-link.active {
+  color: #fff;
+  background: linear-gradient(180deg,#e11d2e,#c4101f);
+  box-shadow: 0 2px 10px rgba(225,29,46,.35);
+}
+
+/* Toggler visible en fondo oscuro */
+.navbar-carbon .navbar-toggler {
+  border-color: rgba(255,255,255,.25);
+}
+.navbar-carbon .navbar-toggler-icon {
+  filter: invert(1) grayscale(1) brightness(1.6);
+}
+
+/* Espaciado: acerca las secciones al logo */
+.navbar-brand { margin-right: .5rem !important; }
+.navbar-nav   { gap: .25rem; }  /* enlaces más juntitos */
+
+/* === Fichas: miniaturas visibles y sin bloque gris === */
+.token-thumb { 
+  position: relative;
+  border-radius: .6rem;
+  overflow: hidden;
+  /* fondo claro/oscuro agradable en vez de gris plano */
+  background: linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.70));
+}
+[data-theme="dark"] .token-thumb {
+  background: linear-gradient(180deg, rgba(32,34,38,.95), rgba(32,34,38,.85));
+}
+
+/* la imagen ocupa el cuadro y se ve completa */
+.token-thumb > img{
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: contain;     /* <- muestra la ficha completa */
+  display: block;
+  padding: 8px;            /* respiración alrededor de la pieza */
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.25));
+}
+
+/* por si quedó algún esqueleto/overlay previo, lo anulamos */
+.token-thumb::before,
+.token-thumb::after { content: none !important; }
+
+/* altura cómoda de las tarjetas en móvil */
+@media (max-width: 576px){
+  .token-thumb.ratio{ --bs-aspect-ratio: 75%; } /* 4:3 */
+}
+
+/* === Ajustes visuales para las fichas clásicas === */
+
+/* Texto visible en modo oscuro y claro */
+.dark-theme .token-card .card-title {
+  color: #ff4d4d; /* Rojo para destacar en modo oscuro */
+}
+
+.dark-theme .token-card .card-text {
+  color: #d3d3d3; /* Gris claro legible */
+}
+
+/* Ajusta el fondo y bordes para mejorar contraste */
+.dark-theme .token-card {
+  background-color: #1e1e1e;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+}
+
+.dark-theme .token-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+/* Color del título general de la sección */
+.dark-theme #pane-fichas h2,
+.dark-theme #pane-fichas h5 {
+  color: #ff4d4d;
+}
+
+/* ======== AJUSTES DE COLOR PARA FICHAS EN MODO OSCURO ======== */
+
+/* Colores generales dentro del tab de fichas */
+[data-theme="dark"] #pane-fichas {
+  color: #d3d3d3;
+}
+
+/* Corrige títulos */
+[data-theme="dark"] #pane-fichas h2,
+[data-theme="dark"] #pane-fichas h5,
+[data-theme="dark"] #pane-fichas h6 {
+  color: #ff4d4d !important;
+}
+
+/* Corrige textos secundarios que usan .text-muted */
+[data-theme="dark"] #pane-fichas .text-muted {
+  color: #cccccc !important;
+}
+
+/* Fondo de las tarjetas */
+[data-theme="dark"] .token-card {
+  background-color: #1c1c1c !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Hover elegante */
+[data-theme="dark"] .token-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+}
+
+/* Corrige también el modal de ficha */
+[data-theme="dark"] #tokenModal .modal-content {
+  background-color: #1e1e1e;
+  color: #d3d3d3;
+}
+
+[data-theme="dark"] #tokenModal h5 {
+  color: #ff4d4d;
+}
+
+/* Fondo sutil para captions del carrusel */
+.bg-caption{
+  background: rgba(0,0,0,.45);
+  padding: .35rem .6rem;
+  border-radius: .5rem;
+  backdrop-filter: blur(2px);
+}
+
+/* Preview del billete (popover) */
+.bill-popover {
+  --bs-popover-bg: transparent;
+  --bs-popover-border-color: transparent;
+  --bs-popover-arrow-width: 0; /* sin flecha */
+  --bs-popover-arrow-height: 0;
+  padding: 0;
+}
+.bill-popover .popover-body {
+  padding: 0;
+}
+.bill-preview {
+  display: block;
+  width: 220px;
+  max-width: 40vw;
+  border-radius: .5rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,.5);
+}
+
+/* Lightbox del billete */
+.bill-lightbox .modal-content {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+.bill-lightbox .btn-close {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  background: #fff;
+  border-radius: 999px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.35);
+  opacity: 1;
+}
+.bill-lightbox .bill-img {
+  display: block;
+  width: min(640px, 96vw);
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: .75rem;
+  box-shadow: 0 30px 60px rgba(0,0,0,.6);
+  transform: scale(.96);
+  transition: transform .18s ease-out;
+}
+.bill-lightbox.show .bill-img {
+  transform: scale(1);
+}
+
+/* ===== Hero Reglas ===== */
+.hero-rules{
+  position:relative;
+  overflow:hidden;
+  border-radius:16px;
+  min-height:360px;
+  background:#111; /* fallback */
+}
+.hero-rules__bg{
+  position:absolute; inset:0;
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.75)),
+    url("../assets/img/monopoly-banner.jpg") center/cover no-repeat;
+  filter:saturate(1.05) contrast(1.05);
+  transform:scale(1.02);
+}
+.hero-rules__content{
+  position:relative; z-index:2;
+  padding:56px 24px;
+  color:#fff;
+  text-shadow:0 2px 10px rgba(0,0,0,.35);
+  max-width:800px;
+}
+.hero-rules__content h1{
+  font-weight:700;
+  font-size:2.5rem;
+}
+.hero-rules__content p{
+  font-size:1.15rem;
+  opacity:0.9;
+}
+@media (min-width: 992px){
+  .hero-rules{ min-height:420px; }
+  .hero-rules__content{ padding:72px 48px; }
+}
+@media (max-width: 575.98px){
+  .hero-rules{ min-height:240px; }
+  .hero-rules__content h1{ font-size:1.8rem; }
+  .hero-rules__content p{ font-size:1rem; }
+}
+
+/* ===== CTA Final con textura y soporte claro/oscuro ===== */
+.cta-final{
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* Textura sutil (mismo patrón, distintos tonos) */
+[data-theme="light"] .cta-final{
+  color: #212529;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.6), rgba(255,255,255,.6)),
+    repeating-linear-gradient(
+      45deg,
+      #f3f5f7 0px, #f3f5f7 6px,
+      #eef1f4 6px, #eef1f4 12px
+    );
+  border: 1px solid #e9ecef;
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+}
+
+[data-theme="dark"] .cta-final{
+  color: #e9ecef;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.35)),
+    repeating-linear-gradient(
+      45deg,
+      #13161a 0px, #13161a 6px,
+      #161a1f 6px, #161a1f 12px
+    );
+  border: 1px solid rgba(255,255,255,.06);
+  box-shadow: 0 18px 50px rgba(0,0,0,.35);
+}
+
+/* Tipografía y ritmos */
+.cta-final h3{ letter-spacing:.2px; }
+.cta-final .cta-text{
+  max-width: 760px;
+  margin: 0 auto 1rem;
+  opacity: .92;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 576px){
+  .cta-final{ border-radius: 12px; }
+}
+
+/* ===== Ajuste de imágenes en Casillas del tablero ===== */
+#casillas .rule-card img {
+  width: 100%;
+  height: 220px;          /* altura fija equilibrada */
+  object-fit: contain;    /* mantiene proporción sin recortar */
+  object-position: center;
+  border-radius: .5rem;
+  background-color: rgba(255,255,255,0.05); /* leve fondo neutro */
+  padding: .5rem;
+}
+
+/* En pantallas pequeñas, reducir un poco más */
+@media (max-width: 768px) {
+  #casillas .rule-card img {
+    height: 180px;
+  }
+}
+
+/* ===== Zoom interactivo para imágenes de Casillas ===== */
+#casillas .rule-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: contain;
+  object-position: center;
+  border-radius: .5rem;
+  background-color: rgba(255,255,255,0.05);
+  padding: .5rem;
+  cursor: zoom-in;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+#casillas .rule-card img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+/* Modal para el zoom */
+.image-lightbox .modal-content {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.image-lightbox .modal-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.image-lightbox img {
+  width: min(90vw, 800px);
+  height: auto;
+  max-height: 85vh;
+  border-radius: 10px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.7);
+  transition: transform 0.25s ease-out;
+}
+
+.image-lightbox.show img {
+  transform: scale(1);
+}
+
+.image-lightbox .btn-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0.9;
+}
+
+/* ===== Animación cine para el lightbox ===== */
+.image-lightbox .modal-backdrop.show { opacity: .85; } /* fondo más suave */
+.image-lightbox .modal-dialog{
+  transform: scale(.96);
+  transition: transform .28s cubic-bezier(.2,.7,.3,1);
+}
+.image-lightbox.show .modal-dialog{ transform: scale(1); }
+
+/* Imagen entra con fade + leve elevación */
+.image-lightbox #lightboxImage{
+  opacity: 0;
+  transform: translateY(6px) scale(.985);
+  transition:
+    opacity .24s ease-out,
+    transform .28s cubic-bezier(.2,.7,.3,1);
+}
+.image-lightbox.show #lightboxImage{
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Respeto por usuarios con reducción de movimiento */
+@media (prefers-reduced-motion: reduce){
+  .image-lightbox .modal-dialog,
+  .image-lightbox #lightboxImage{
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* ===== Colores dorados para títulos en modo oscuro ===== */
+[data-theme="dark"] .token-card h6.card-title {
+  color: #d4af37 !important; /* dorado elegante */
+}
+
+[data-theme="dark"] .token-card:hover h6.card-title {
+  color: #f0c76e !important; /* tono más claro al pasar el mouse */
+}
+
+/* Ajuste opcional para el texto de la tarjeta si quieres más contraste */
+[data-theme="dark"] .token-card .card-text {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ===== DORADO FINAL PARA FICHAS EN MODO OSCURO ===== */
+[data-theme="dark"] #pane-fichas .token-card h6.card-title,
+.dark-theme .token-card h6.card-title {
+  color: #d4af37 !important;
+}
+
+[data-theme="dark"] #pane-fichas .token-card:hover h6.card-title,
+.dark-theme .token-card:hover h6.card-title {
+  color: #f0c76e !important;
+}
+
+[data-theme="dark"] #pane-fichas .token-card .card-text,
+.dark-theme .token-card .card-text {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+[data-theme="dark"] #pane-fichas h2,
+[data-theme="dark"] #pane-fichas h5,
+[data-theme="dark"] #pane-fichas h6 {
+  color: #f0c76e !important;
+}
+
+/* Miniaturas de fichas en tarjetas */
+.token-thumb{
+  width: 100%;
+  height: 180px;            /* todas iguales */
+  object-fit: contain;      /* no se recortan */
+  object-position: center;
+  background: rgba(255,255,255,.05);
+  border-radius: .5rem;
+  padding: .5rem;
+  cursor: zoom-in;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.token-thumb:hover{
+  transform: scale(1.02);
+  box-shadow: 0 8px 18px rgba(0,0,0,.35);
+}
+
+/* Dorado en modo oscuro para títulos (por si aún no lo tienes) */
+[data-theme="dark"] #pane-fichas .token-card h6.card-title{
+  color:#d4af37!important;
+}
+[data-theme="dark"] #pane-fichas .token-card:hover h6.card-title{
+  color:#f0c76e!important;
+}
+
+/* ===== Casas & Hoteles ===== */
+.text-gold { color: #d4af37; }
+
+.build-hero__frame {
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.build-hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;       /* mostramos TODO sin recortar */
+  display: block;
+}
+
+.thumb-list {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(64px, 1fr));
+  gap: .5rem;
+  margin: .25rem 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.thumb {
+  width: 100%;
+  aspect-ratio: 1/1;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.02);
+  border-radius: .75rem;
+  padding: .35rem;
+  display: grid;
+  place-items: center;
+  transition: transform .15s ease, border-color .15s ease, background .15s ease;
+}
+
+.thumb:hover { transform: translateY(-2px); border-color: rgba(212,175,55,0.65); }
+.thumb.is-active { outline: 2px solid #d4af37; background: rgba(212,175,55,0.06); }
+
+.thumb img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+@media (max-width: 576px) {
+  .thumb-list { grid-template-columns: repeat(5, 1fr); gap: .4rem; }
+}
+
+/* === Blog look & feel === */
+.prose { font-size: 1.05rem; line-height: 1.9; letter-spacing: .1px; }
+.prose p { margin-bottom: 1.1rem; }
+.prose h2 { margin: 2rem 0 0.75rem; font-weight: 700; }
+.prose h3 { margin: 1.5rem 0 .5rem; font-weight: 600; }
+.prose blockquote{
+  border-left: 4px solid rgba(255,255,255,.15);
+  padding: .75rem 1rem; margin: 1rem 0; font-style: italic; color: #adb5bd;
+  background: rgba(255,255,255,.03); border-radius: .5rem;
+}
+/* Hero con sombra suave */
+.hero-img { border-radius: 1rem; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,.25); }
+.hero-img img { height: 420px; }
+@media (max-width: 576px){ .hero-img img{ height: 240px; } }
+
+/* Meta (categoría + fecha + tiempo de lectura) */
+.article-meta { gap: .6rem!important; }
+.article-meta .badge { text-transform: lowercase; border-radius: 999px; }
+#fecha::before { content: "•"; margin: 0 .5rem; opacity: .6; }
+
+/* Lista de relacionadas tipo “mini cards” */
+.related-item { display: grid; grid-template-columns: 96px 1fr; gap: .75rem; }
+.related-item .thumb{
+  width:96px;height:64px;border-radius:.6rem;overflow:hidden;
+  box-shadow: 0 4px 18px rgba(0,0,0,.25);
+}
+.related-item img{ width:100%;height:100%;object-fit:cover;object-position:center; }
+.related-item .title{ font-weight:600; line-height:1.2; }
+.related-item a{ color:inherit; text-decoration:none; }
+.related-item a:hover .title{ text-decoration:underline; }
+
+/* Navegación Anterior / Siguiente */
+.prevnext{
+  display:grid; grid-template-columns: 1fr 1fr; gap:1rem;
+}
+.prevnext a{
+  display:flex; align-items:center; gap:.75rem; text-decoration:none;
+  background: rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08);
+  border-radius:.8rem; padding: .9rem 1rem;
+}
+.prevnext a:hover{ background: rgba(255,255,255,.06); }
+.prevnext .dir{ font-size:.8rem; opacity:.7; }
+.prevnext .ttl{ font-weight:600; line-height:1.2; }
+
+/* === LISTA DE NOTICIAS: estilo editorial === */
+.blog-grid { row-gap: 1.25rem; }
+
+.blog-card{
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 1.1rem;
+  padding: .9rem;
+  border-radius: 1rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 6px 20px var(--shadow-color);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.blog-card:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 14px 34px var(--shadow-color);
+  border-color: rgba(227,6,19,.25);
+}
+
+.blog-media{
+  border-radius: .8rem;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  background: rgba(0,0,0,.05);
+  box-shadow: 0 6px 18px rgba(0,0,0,.18);
+}
+.blog-media img{
+  width:100%; height:100%; object-fit:cover; display:block;
+  transition: transform .28s ease, filter .28s ease;
+}
+.blog-card:hover .blog-media img{ transform: scale(1.04); filter: brightness(1.05); }
+
+.blog-body{ display:flex; flex-direction:column; gap:.55rem; }
+.blog-title{ font-weight:700; font-size:1.2rem; line-height:1.25; margin: .1rem 0 .2rem; }
+.blog-snippet{ color: var(--text-muted); margin-bottom:.25rem; }
+
+.meta{ font-size:.88rem; color: var(--text-muted); display:flex; align-items:center; gap:.5rem; }
+.meta .dot::before{ content:"•"; opacity:.6; margin: 0 .25rem; }
+
+.cat{
+  display:inline-block; font-size:.75rem; font-weight:700; letter-spacing:.3px;
+  padding:.3rem .65rem; border-radius:999px; color:#fff;
+}
+.cat-curiosidades{ background:#b26ddf; }
+.cat-competencias{ background:#ff6a55; }
+.cat-actualidad{ background:#4db6ac; }
+.cat-general{ background:#71717a; }
+
+/* Responsive: apilar en móvil */
+@media (max-width: 992px){
+  .blog-card{ grid-template-columns: 1fr; }
+  .blog-media{ aspect-ratio: 16/9; }
+}
+
+
+/* ======== FIX PERSISTENTE MODO OSCURO NOTICIAS ======== */
+body.dark-theme .blog-card,
+body.dark-theme .card,
+body.dark-theme .noticia-card {
+  background-color: #181a1f !important;
+  color: #e6e9ee !important;
+  border-color: rgba(255,255,255,0.08) !important;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.4) !important;
+}
+
+body.dark-theme .blog-title,
+body.dark-theme .blog-title a,
+body.dark-theme h3,
+body.dark-theme h4 {
+  color: #f4f6fa !important;
+}
+
+body.dark-theme .meta,
+body.dark-theme .meta small {
+  color: #a8b0bb !important;
+}
+
+body.dark-theme .cat-curiosidades,
+body.dark-theme .cat-competencias,
+body.dark-theme .cat-general {
+  filter: brightness(1.3) !important;
+  opacity: 0.95 !important;
+}
+
+body.dark-theme .btn-outline-secondary {
+  color: #dbe2ea !important;
+  border-color: rgba(219,226,234,0.3) !important;
+}
+
+body.dark-theme .btn-outline-secondary:hover {
+  background: rgba(219,226,234,0.1) !important;
+}
+
+
+/* ======== MODO OSCURO: Noticias (lista) ======== */
+.dark-theme .blog-card{
+  background: #16191d !important;   /* override al #fff */
+  color: #e6e9ee !important;         /* texto principal claro */
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35) !important;
+}
+.dark-theme .blog-media img{
+  filter: none;                       /* asegúrate de no atenuar imágenes */
+}
+.dark-theme .blog-title,
+.dark-theme .blog-title a{
+  color: #f3f5f7 !important;
+  text-decoration: none;
+}
+.dark-theme .blog-title a:hover{
+  color: #ffffff !important;
+  text-decoration: underline;
+}
+.dark-theme .blog-snippet{ color: #b9c2cc !important; }
+.dark-theme .meta{ color: #9aa5b1 !important; }
+.dark-theme .meta .dot{ background: #6b7480 !important; }
+
+/* Chips de categoría en oscuro */
+.dark-theme .cat-curiosidades{
+  background: rgba(74, 120, 255, 0.12) !important;
+  color: #aecdff !important;
+  border: 1px solid rgba(74,120,255,0.25) !important;
+}
+.dark-theme .cat-competencias{
+  background: rgba(255, 77, 77, 0.12) !important;
+  color: #ff9b9b !important;
+  border: 1px solid rgba(255,77,77,0.25) !important;
+}
+.dark-theme .cat-general{
+  background: rgba(255,255,255,0.08) !important;
+  color: #e6e9ee !important;
+  border: 1px solid rgba(255,255,255,0.15) !important;
+}
+
+/* Enlaces dentro de tarjetas (por si algún reset te pisa el color) */
+.dark-theme .blog-card a,
+.dark-theme .blog-card a:visited{
+  color: inherit !important;
+}
+
+/* Botones sobre fondo oscuro: asegúrate de contraste */
+.dark-theme .btn-outline-secondary{
+  color: #dbe2ea !important;
+  border-color: rgba(219,226,234,0.35) !important;
+}
+.dark-theme .btn-outline-secondary:hover{
+  background: rgba(219,226,234,0.08) !important;
+}
+
+/* ======== MODO OSCURO: Noticia (detalle) ======== */
+.dark-theme .hero-img{
+  box-shadow: 0 16px 40px rgba(0,0,0,0.45) !important;
+}
+.dark-theme .prose{ color: #e6e9ee !important; }
+.dark-theme .prose p{ color: #ccd6df !important; }
+.dark-theme .prose h2,
+.dark-theme .prose h3{ color: #f3f5f7 !important; }
+.dark-theme .prose blockquote{
+  background: rgba(255,255,255,0.06) !important;
+  color: #c9d3dc !important;
+  border-left: 4px solid rgba(255,255,255,0.15) !important;
+}
+
+/* Relacionadas y navegación prev/next en oscuro */
+.dark-theme .card{ 
+  background: #171a1f !important; 
+  color: #e6e9ee !important; 
+  border-color: rgba(255,255,255,0.08) !important; 
+}
+.dark-theme .related-item .title{ color: #e9edf2 !important; }
+.dark-theme .related-item .title:hover{ color: #ffffff !important; }
+.dark-theme .prevnext a{
+  background: #171a1f !important;
+  border-color: rgba(255,255,255,0.08) !important;
+  color: #e6e9ee !important;
+}
+.dark-theme .prevnext a:hover{
+  background: #1d2127 !important;
+}
+
+/* Migas de pan en oscuro (por si el tema no las cubre) */
+.dark-theme .breadcrumb .breadcrumb-item a{ color: #cdd6df !important; }
+.dark-theme .breadcrumb .breadcrumb-item.active{ color: #edf2f7 !important; }
+
+/* ======== FIX PERSISTENTE MODO OSCURO NOTICIAS ======== */
+body.dark-theme .blog-card,
+body.dark-theme .card,
+body.dark-theme .noticia-card {
+  background-color: #181a1f !important;
+  color: #e6e9ee !important;
+  border-color: rgba(255,255,255,0.08) !important;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.4) !important;
+}
+
+body.dark-theme .blog-title,
+body.dark-theme .blog-title a,
+body.dark-theme h3,
+body.dark-theme h4 {
+  color: #f4f6fa !important;
+}
+
+body.dark-theme .meta,
+body.dark-theme .meta small {
+  color: #a8b0bb !important;
+}
+
+body.dark-theme .cat-curiosidades,
+body.dark-theme .cat-competencias,
+body.dark-theme .cat-general {
+  filter: brightness(1.3) !important;
+  opacity: 0.95 !important;
+}
+
+body.dark-theme .btn-outline-secondary {
+  color: #dbe2ea !important;
+  border-color: rgba(219,226,234,0.3) !important;
+}
+
+body.dark-theme .btn-outline-secondary:hover {
+  background: rgba(219,226,234,0.1) !important;
+}
+
+.navbar .nav-link.active {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  color: var(--accent-color, #ff4d4d) !important; /* o el color que uses para texto activo */
+}
+
+/* Título y subtítulo del banner de Reglas */
+[data-theme="light"] .hero-rules__content h1,
+[data-theme="light"] .hero-rules__content p {
+  color: #ffffff !important;
+  text-shadow: 0 1px 3px rgba(0,0,0,.45);
+}
+
+[data-theme="dark"] .hero-rules__content h1,
+[data-theme="dark"] .hero-rules__content p {
+  color: #f8f9fa !important;
+  text-shadow: 0 1px 2px rgba(0,0,0,.35);
+}
+
+/* ===== FIX: Formularios y filtros en modo oscuro ===== */
+[data-theme="dark"] .form-control,
+[data-theme="dark"] .form-select {
+  background-color: #2b2b2b !important;
+  color: #f5f5f5 !important;
+  border-color: rgba(255,255,255,0.2) !important;
+}
+
+[data-theme="dark"] .form-control::placeholder {
+  color: #bbbbbb !important;
+}
+
+[data-theme="dark"] .form-label {
+  color: #e0e0e0 !important;
+}
+
+[data-theme="dark"] .form-select option {
+  background-color: #2b2b2b !important;
+  color: #f5f5f5 !important;
+}
+
+[data-theme="dark"] .form-control:focus,
+[data-theme="dark"] .form-select:focus {
+  background-color: #343434 !important;
+  color: #ffffff !important;
+  border-color: #E30613 !important; /* rojo Monopoly */
+  box-shadow: 0 0 0 .25rem rgba(227,6,19,.25) !important;
+}
+
+/* Botones de filtros rápidos */
+[data-theme="dark"] .filter-pill {
+  background-color: #1e1e1e !important;
+  border-color: rgba(255,255,255,0.15) !important;
+  color: #d0d0d0 !important;
+}
+[data-theme="dark"] .filter-pill:hover {
+  background-color: #E30613 !important;
+  color: #fff !important;
+}
+
+/* ===== Tabs en modo oscuro (quita el fondo blanco del activo) ===== */
+[data-theme="dark"] .nav-tabs {
+  border-bottom: 1px solid rgba(255,255,255,.12);
+}
+
+[data-theme="dark"] .nav-tabs .nav-link {
+  color: #e6e6e6;
+  background-color: transparent;
+  border: 1px solid transparent;
+}
+
+[data-theme="dark"] .nav-tabs .nav-link:hover {
+  border-color: rgba(255,255,255,.18) rgba(255,255,255,.18) transparent;
+  color: #ffffff;
+}
+
+/* Activa: sin blanco, bordes sutiles y sin línea inferior */
+[data-theme="dark"] .nav-tabs .nav-link.active,
+[data-theme="dark"] .nav-tabs .nav-item.show .nav-link {
+  color: #fff !important;
+  background-color: #2b2b2b !important;              /* << elige tu gris */
+  border-color: rgba(255,255,255,.25) rgba(255,255,255,.25) transparent !important;
+}
+
+
+
+

@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reglas de Monopoly - Mundo Monopoly</title>
+  <meta name="description" content="Reglas claras de Monopoly: preparación, elegir ficha, casillas, construcciones, negociaciones y final de partida.">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../css/styles.css" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg?v=2">
+  <meta name="theme-color" content="#E30613">
+
+  <style>
+    /* ===== Hero Reglas (con tu banner) ===== */
+    .hero-rules{
+      position:relative; overflow:hidden; border-radius:16px;
+      min-height:360px; background:#111;
+    }
+    .hero-rules__bg{
+      position:absolute; inset:0;
+      background:
+        linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.75)),
+        url("../assets/img/monopoly-banner.jpg") center/cover no-repeat;
+      filter:saturate(1.05) contrast(1.05);
+      transform:scale(1.02);
+    }
+    .hero-rules__content{
+      position:relative; z-index:2; color:#fff; text-shadow:0 2px 10px rgba(0,0,0,.35);
+      padding:56px 24px; max-width:800px;
+    }
+    .hero-rules__content h1{ font-weight:700; font-size:2.5rem; }
+    .hero-rules__content p{ font-size:1.15rem; opacity:.9; }
+
+    @media (min-width: 992px){ .hero-rules{ min-height:420px; } .hero-rules__content{ padding:72px 48px; } }
+    @media (max-width: 575.98px){ .hero-rules{ min-height:240px; } .hero-rules__content h1{ font-size:1.8rem; } .hero-rules__content p{ font-size:1rem; } }
+
+    /* ===== Estética general ===== */
+    .rule-figure img{ border-radius:.6rem; }
+    .rule-figure figcaption{ font-size:.9rem; opacity:.85; }
+    .rule-card{ background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); border-radius:.6rem; transition:transform .25s ease, box-shadow .25s ease; }
+    .rule-card:hover{ transform: translateY(-4px); box-shadow: 0 18px 40px rgba(0,0,0,.25); }
+    .section-alt{ background: rgba(255,255,255,.04); border-radius:14px; }
+    .bg-caption{ background: rgba(0,0,0,.45); padding:.35rem .6rem; border-radius:.5rem; backdrop-filter:blur(2px); }
+
+    /* ===== Preview & Lightbox de billetes (coincide con tu sitio) ===== */
+    .bill-popover { --bs-popover-bg: transparent; --bs-popover-border-color: transparent; --bs-popover-arrow-width: 0; --bs-popover-arrow-height: 0; padding:0; }
+    .bill-popover .popover-body { padding:0; }
+    .bill-preview { display:block; width:220px; max-width:40vw; border-radius:.5rem; box-shadow:0 10px 30px rgba(0,0,0,.5); }
+    .bill-lightbox .modal-content { background:transparent; border:0; box-shadow:none; }
+    .bill-lightbox .btn-close { position:absolute; top:-12px; right:-12px; background:#fff; border-radius:999px; box-shadow:0 4px 16px rgba(0,0,0,.35); opacity:1; }
+    .bill-lightbox .bill-img { display:block; width:min(640px, 96vw); max-height:80vh; object-fit:contain; border-radius:.75rem; box-shadow:0 30px 60px rgba(0,0,0,.6); transform:scale(.96); transition:transform .18s ease-out; }
+    .bill-lightbox.show .bill-img { transform:scale(1); }
+
+    /* ==== Mejoras de contraste para "Dinero inicial por jugador" (#setup) ==== */
+
+/* FONDO de la tarjeta solo en esta sección */
+.dark-theme #setup .card,
+[data-theme="dark"] #setup .card {
+  background: #222;                 /* un poco más claro que #111 para que destaque el texto */
+  border-color: rgba(255,255,255,.10);
+  color: #e9e9e9;
+}
+
+/* Texto secundario dentro de la tarjeta */
+.dark-theme #setup .card .text-muted,
+[data-theme="dark"] #setup .card .text-muted {
+  color: #cfcfcf !important;         /* legible sobre fondo oscuro */
+}
+
+/* ===== Chips de billetes ===== */
+#setup .chip{
+  border-radius: 999px;
+  padding: .45rem .9rem;
+  font-weight: 600;
+  line-height: 1;
+  border: 1px solid transparent;
+  transition: all .15s ease;
+}
+
+/* modo claro (por si no lo tenías) */
+[data-theme="light"] #setup .chip{
+  background: #f4f5f7;
+  color: #222;
+  border-color: rgba(0,0,0,.12);
+}
+[data-theme="light"] #setup .chip:hover{
+  background: #e9ecef;
+  box-shadow: 0 2px 6px rgba(0,0,0,.12);
+}
+
+/* modo oscuro: mayor contraste */
+.dark-theme #setup .chip,
+[data-theme="dark"] #setup .chip{
+  background: rgba(255,255,255,.10);
+  color: #fafafa;
+  border-color: rgba(255,255,255,.22);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+}
+.dark-theme #setup .chip:hover,
+[data-theme="dark"] #setup .chip:hover{
+  background: rgba(255,255,255,.16);
+  box-shadow: 0 2px 10px rgba(0,0,0,.35);
+}
+.dark-theme #setup .chip:active,
+[data-theme="dark"] #setup .chip:active{
+  background: rgba(255,255,255,.22);
+}
+
+/* Accesibilidad: foco visible */
+#setup .chip:focus-visible{
+  outline: 2px solid #ffd54a;
+  outline-offset: 2px;
+}
+
+/* Popover de billetes en oscuro: quita halo gris si lo notas tenue */
+.dark-theme .bill-popover .bill-preview,
+[data-theme="dark"] .bill-popover .bill-preview{
+  box-shadow: 0 10px 30px rgba(0,0,0,.7);
+}
+
+/* Corrige visibilidad del título en modo claro */
+[data-theme="light"] .hero-section h1,
+[data-theme="light"] .hero-section p {
+  color: #ffffff !important; /* texto blanco sobre fondo oscuro */
+  text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+/* En modo oscuro, mantenlo claro pero sin brillo excesivo */
+[data-theme="dark"] .hero-section h1,
+[data-theme="dark"] .hero-section p {
+  color: #f8f9fa !important;
+}
+
+  </style>
+</head>
+
+<body>
+  <!-- NAV -->
+  <nav class="navbar navbar-expand-lg navbar-carbon fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="../index.html">
+        <img src="../assets/icons/logo.svg" alt="Mundo Monopoly" height="40">
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" data-page="index" href="#">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" data-page="historia.html" href="#">Historia</a></li>
+          <li class="nav-item"><a class="nav-link active" data-page="reglas.html" href="#">Reglas</a></li>
+          <li class="nav-item"><a class="nav-link" data-page="piezas.html" href="#">Piezas</a></li>
+          <li class="nav-item"><a class="nav-link" data-page="estrategias.html" href="#">Estrategias</a></li>
+          <li class="nav-item"><a class="nav-link" data-page="productos.html" href="#">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" data-page="noticias.html" href="#">Noticias</a></li>
+          <li class="nav-item"><a class="nav-link" data-page="contacto.html" href="#">Contacto</a></li>
+        </ul>
+
+        <div class="d-flex ms-auto">
+          <button id="darkModeToggle" class="btn btn-outline-light" type="button" title="Modo oscuro">
+            <i class="bi bi-moon-stars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-5">
+
+    <!-- HERO / BANNER -->
+    <section class="hero-rules mb-4" aria-label="Banner de Reglas de Monopoly">
+      <div class="hero-rules__bg" role="img" aria-label="Tablero de Monopoly con billetes, dados y una ficha de coche"></div>
+      <div class="hero-rules__content container">
+        <h1 class="fw-bold mb-2">Reglas de Monopoly</h1>
+        <p class="mb-0">Aprende las reglas y domina el tablero. Guía práctica para iniciar tu partida.</p>
+      </div>
+    </section>
+
+    <!-- ====== CONTENIDO DEL JUEGO & SETUP ====== -->
+    <section class="mb-5" id="setup">
+      <h2 class="h4 mb-3">Contenido del juego &amp; Setup</h2>
+      <p>
+        Antes de empezar, elige un <strong>banquero</strong> (administra dinero, tarjetas, casas/hoteles y subastas),
+        reparte <strong>$1500 por jugador</strong> (según edición), baraja <em>Suerte</em> y <em>Arca Comunal</em>, y
+        coloca tarjetas y edificios junto al tablero.
+      </p>
+
+      <div class="card border-0 shadow-sm mb-3">
+        <div class="card-body">
+          <h5 class="card-title mb-2">Dinero inicial por jugador</h5>
+          <p class="mb-2 text-muted small">Composición típica (edición clásica):</p>
+
+          <!-- Chips clicables -->
+          <div class="d-flex flex-wrap gap-2 mb-2" id="billsChips">
+            <button type="button" class="chip" data-bill="500">$500 × 2</button>
+            <button type="button" class="chip" data-bill="100">$100 × 2</button>
+            <button type="button" class="chip" data-bill="50">$50 × 2</button>
+            <button type="button" class="chip" data-bill="20">$20 × 6</button>
+            <button type="button" class="chip" data-bill="10">$10 × 5</button>
+            <button type="button" class="chip" data-bill="5">$5 × 5</button>
+            <button type="button" class="chip" data-bill="1">$1 × 5</button>
+          </div>
+
+          <p class="mb-0"><strong>Total:</strong> $1500 por jugador.</p>
+        </div>
+      </div>
+
+      <ol class="mb-4">
+        <li><strong>Elige tu ficha</strong> y colócala en <em>Salida</em>. (Consulta las fichas clásicas en <a href="piezas.html" class="text-danger fw-semibold">Piezas</a>).</li>
+        <li>El banquero custodia <strong>dinero</strong>, <strong>tarjetas</strong> y <strong>casas/hoteles</strong>.</li>
+        <li>Prepara los <strong>dos dados</strong> cerca del tablero.</li>
+      </ol>
+
+      <!-- Carrusel setup (2 imágenes) -->
+      <div id="setupCarousel" class="carousel slide rule-figure" data-bs-ride="carousel" aria-label="Configuración del juego">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#setupCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Componentes listos"></button>
+          <button type="button" data-bs-target="#setupCarousel" data-bs-slide-to="1" aria-label="Elegir ficha"></button>
+        </div>
+        <div class="carousel-inner rounded-3 overflow-hidden">
+          <div class="carousel-item active" style="height:420px;">
+            <img src="../assets/img/setup-componentes.jpg" class="d-block w-100 h-100" alt="Componentes del juego listos para repartir"
+                 style="object-fit:cover;" loading="lazy" decoding="async">
+            <div class="carousel-caption d-none d-md-block"><span class="bg-caption">Componentes básicos listos para repartir.</span></div>
+          </div>
+          <div class="carousel-item" style="height:420px;">
+            <img src="../assets/img/elegir-ficha.avif" class="d-block w-100 h-100" alt="Jugador eligiendo ficha de Monopoly"
+                 style="object-fit:cover;" loading="lazy" decoding="async">
+            <div class="carousel-caption d-none d-md-block"><span class="bg-caption">Cada jugador elige su ficha y la coloca en Salida.</span></div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#setupCarousel" data-bs-slide="prev" aria-label="Anterior">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#setupCarousel" data-bs-slide="next" aria-label="Siguiente">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ====== CÓMO SE JUEGA (fondo alterno) ====== -->
+    <section id="como-jugar" class="mb-5 section-alt p-4">
+      <h2 class="h4">Cómo se juega</h2>
+      <div class="row g-3 align-items-center">
+        <div class="col-lg-6">
+          <ol class="mb-3">
+            <li>Tira los dados y avanza tu ficha el número indicado (turno en sentido horario).</li>
+            <li>Aplica la casilla donde caes: compra, paga alquiler, toma carta, paga impuesto, etc.</li>
+            <li>Si sacas <strong>doubles</strong>, repites turno; con tres doubles seguidos vas a la cárcel.</li>
+            <li>Propiedad sin dueño que no se compra, <strong>se subasta</strong> al instante.</li>
+            <li>Negocia en tu turno: <strong>intercambia</strong> propiedades/dinero con otros jugadores.</li>
+          </ol>
+          <p class="mb-0">Objetivo: hacer que los rivales caigan en tus propiedades y no puedan pagar.</p>
+        </div>
+        <div class="col-lg-6">
+          <figure class="rule-figure">
+            <img src="../assets/img/dados.jpg" alt="Tirar dados y avanzar en el tablero" class="img-fluid"
+                 loading="lazy" decoding="async">
+            <figcaption class="mt-2 text-muted">Turnos con dos dados; los pares permiten repetir.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== CASILLAS ====== -->
+    <section id="casillas" class="mb-5">
+      <h2 class="h4">Casillas del tablero</h2>
+      <div class="row g-4 mt-1">
+        <div class="col-md-6">
+          <article id="salida" class="rule-card p-3 h-100">
+            <h3 class="h5">Salida</h3>
+            <p class="mb-2">Al pasar por <em>Salida</em> cobras <strong>$200</strong> (según edición). Si caes exactamente, normalmente también cobras $200.</p>
+            <img src="../assets/img/go.png" alt="Casilla de Salida en Monopoly" class="img-fluid" loading="lazy" decoding="async">
+          </article>
+        </div>
+
+        <div class="col-md-6">
+          <article id="propiedades" class="rule-card p-3 h-100">
+            <h3 class="h5">Propiedades (calles por color)</h3>
+            <p class="mb-2">Compra si no tiene dueño; si no compras, el banquero <strong>subasta</strong>. Con monopolio (color completo) puedes construir.</p>
+            <img src="../assets/img/targeta de priedades del  mismo color.jpg" alt="Tarjetas de propiedades por color" class="img-fluid" loading="lazy" decoding="async">
+          </article>
+        </div>
+
+        <div class="col-md-6">
+          <article id="estaciones" class="rule-card p-3 h-100">
+            <h3 class="h5">Estaciones</h3>
+            <p class="mb-2">Cuantas más estaciones poseas, mayor alquiler cobras al rival que caiga en ellas.</p>
+            <img src="../assets/img/estacion.png" alt="Estaciones ferroviarias del tablero" class="img-fluid" loading="lazy" decoding="async">
+          </article>
+        </div>
+
+        <div class="col-md-6">
+          <article id="servicios" class="rule-card p-3 h-100">
+            <h3 class="h5">Servicios públicos</h3>
+            <p class="mb-2">Con un servicio, cobras tirada × multiplicador base; con dos servicios, el multiplicador es mayor.</p>
+            <img src="../assets/img/serviscios publicos.jpg" alt="Servicios de agua y electricidad" class="img-fluid" loading="lazy" decoding="async">
+          </article>
+        </div>
+
+        <div class="col-md-6">
+          <article id="suerte-arca" class="rule-card p-3 h-100">
+            <h3 class="h5">Suerte / Arca Comunal</h3>
+            <p class="mb-2">Toma la carta superior y aplícala al instante. Las de “salvoconducto” puedes guardarlas.</p>
+            <img src="../assets/img/targetas de arca comunal.png" alt="Cartas de Suerte y Arca Comunal" class="img-fluid" loading="lazy" decoding="async">
+          </article>
+        </div>
+
+        <div class="col-md-6">
+          <article id="impuestos" class="rule-card p-3 h-100">
+            <h3 class="h5">Impuestos</h3>
+            <p class="mb-2">Casillas que te obligan a pagar a la banca una cantidad fija o porcentaje (según edición).</p>
+            <img src="../assets/img/impuestos.png" alt="Casillas de impuestos en Monopoly" class="img-fluid" loading="lazy" decoding="async">
+          </article>
+        </div>
+
+        <div class="col-md-6">
+          <article id="carcel" class="rule-card p-3 h-100">
+            <h3 class="h5">Cárcel / Ir a la cárcel</h3>
+            <p class="mb-2"><strong>En la cárcel</strong>: puedes salir pagando, con carta o con doubles en 3 intentos. <strong>Ir a la cárcel</strong>: te trasladas directo y termina el turno.</p>
+            <img src="../assets/img/in jail.jpg" alt="Casilla de cárcel del Monopoly" class="img-fluid" loading="lazy" decoding="async">
+          </article>
+        </div>
+
+        <div class="col-md-6">
+          <article id="parking" class="rule-card p-3 h-100">
+            <h3 class="h5">Parking gratuito</h3>
+            <p class="mb-2">Casilla de descanso sin efecto. Algunas “reglas de la casa” acumulan pagos aquí (no oficial).</p>
+            <img src="../assets/img/free-parking.png" alt="Casilla de Parking gratuito" class="img-fluid" loading="lazy" decoding="async">
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== EDIFICACIONES (fondo alterno) ====== -->
+    <section id="edificaciones" class="mb-5 section-alt p-4">
+      <h2 class="h4">Casas y hoteles</h2>
+      <div class="row g-3 align-items-center">
+        <div class="col-lg-6">
+          <ul class="mb-3">
+            <li>Solo puedes construir si posees <strong>todo el color</strong> (monopolio).</li>
+            <li>Construye de forma <strong>uniforme</strong> (1-2-3-4 casas repartidas por igual).</li>
+            <li>El <strong>hotel</strong> sustituye 4 casas y da la renta máxima.</li>
+          </ul>
+          <div class="alert alert-secondary small" role="alert">
+            <i class="bi bi-lightning-charge me-2"></i>
+            <strong>Consejo:</strong> 3 casas por calle suele ser el mejor punto de eficiencia costo/renta.
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <figure class="rule-figure">
+            <img src="../assets/img/monopoly-houses-and-hotels.jpg" alt="Construcción de casas y hoteles en Monopoly" class="img-fluid"
+                 loading="lazy" decoding="async">
+            <figcaption class="mt-2 text-muted">Construye parejo; el hotel sustituye 4 casas.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== TRANSACCIONES ====== -->
+    <section id="transacciones" class="mb-5">
+      <h2 class="h4">Transacciones &amp; hipotecas</h2>
+      <div class="row g-3 align-items-center">
+        <div class="col-lg-6">
+          <ul class="mb-3">
+            <li>Puedes <strong>vender/intercambiar</strong> propiedades, dinero o cartas con otros jugadores en tu turno.</li>
+            <li>Puedes <strong>hipotecar</strong> una propiedad para obtener efectivo; no cobra alquiler mientras esté hipotecada.</li>
+            <li>Para levantar hipoteca debes pagar el valor más el recargo indicado.</li>
+          </ul>
+        </div>
+        <div class="col-lg-6">
+          <figure class="rule-figure">
+            <img src="../assets/img/hipotecas.jpg" alt="Intercambio y negociación en Monopoly" class="img-fluid"
+                 loading="lazy" decoding="async">
+            <figcaption class="mt-2 text-muted">Negociar bien acelera completar colores.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== BANCARROTA (fondo alterno) ====== -->
+    <section id="bancarrota" class="mb-5 section-alt p-4">
+      <h2 class="h4">Bancarrota &amp; ganador</h2>
+      <div class="row g-3 align-items-center">
+        <div class="col-lg-6">
+          <p class="mb-0">Si no puedes pagar una deuda, entregas todo tu patrimonio al acreedor (banca o jugador) y quedas eliminado. Gana quien quede en pie.</p>
+        </div>
+        <div class="col-lg-6">
+          <figure class="rule-figure">
+            <img src="../assets/img/ganador.png" alt="Bancarrota en el juego" class="img-fluid"
+                 loading="lazy" decoding="async">
+            <figcaption class="mt-2 text-muted">Administra efectivo y evita hipotecar en exceso.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== REGLAS DE LA CASA ====== -->
+    <section id="house-rules" class="my-5">
+  <div class="card border-0 shadow-sm card-themed">
+    <div class="row g-0 align-items-center">
+      <!-- Texto -->
+      <div class="col-lg-6 p-4 p-md-5">
+        <h3 class="h5 mb-3">Reglas de la casa (opcionales)</h3>
+        <ul class="mb-3">
+          <li><strong>Parking con bote:</strong> impuestos y multas se acumulan y quien caiga los cobra.</li>
+          <li><strong>Subastas desactivadas:</strong> si nadie compra, la propiedad queda libre para otra ocasión.</li>
+          <li><strong>Préstamos amistosos:</strong> permitir préstamos entre jugadores (acordar intereses/condiciones).</li>
+        </ul>
+        <a href="#tutorial-video" class="btn btn-outline-primary btn-sm">
+          <i class="bi bi-play-circle me-1"></i> Ver tutorial en video
+        </a>
+      </div>
+
+      <!-- Imagen -->
+      <div class="col-lg-6">
+        <figure class="m-0 p-3 p-md-4">
+          <!-- usa la misma imagen que ya tienes para esta sección -->
+          <img src="../assets/img/free-parking.png" alt="Ejemplo de regla de la casa: Parking con bote"
+               class="img-fluid rounded-3 w-100" loading="lazy">
+          <figcaption class="small text-muted mt-2">
+            Ejemplo de regla casera popular (no oficial).
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- (opcional) estilos mínimos para asegurar consistencia en claro/oscuro -->
+<style>
+  /* hereda tu paleta; solo refuerza contraste en oscuro */
+  .dark-theme #house-rules .card,
+  [data-theme="dark"] #house-rules .card{
+    background: #232323;
+    color:#eee;
+    border-color: rgba(255,255,255,.08);
+  }
+  [data-theme="light"] #house-rules .card{
+    background:#f7f7f7;
+    color:#222;
+    border-color: rgba(0,0,0,.06);
+  }
+
+  [data-theme="light"] .card-themed{
+  background:#f7f7f7;
+  color:#222;
+  border-color: rgba(0,0,0,.06);
+}
+[data-theme="dark"] .card-themed,
+.dark-theme .card-themed{
+  background:#232323;
+  color:#eee;
+  border-color: rgba(255,255,255,.08);
+}
+
+</style>
+
+
+   <!-- ====== CTA FINAL ====== -->
+<section class="cta-final my-5" aria-label="¿Listo para jugar?">
+  <div class="container py-5 text-center">
+    <h3 class="fw-bold mb-2">¿Listo para jugar?</h3>
+    <p class="mb-4 cta-text">
+      Domina las reglas y reta a tus amigos en una partida llena de estrategia y diversión.
+    </p>
+    <a href="piezas.html" class="btn btn-danger btn-lg">Conoce las piezas</a>
+  </div>
+</section>
+
+  </main>
+
+  <!-- Lightbox Billetes -->
+  <div class="modal fade bill-lightbox" id="billModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content position-relative text-center">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        <img id="billImg" class="bill-img" src="" alt="">
+      </div>
+    </div>
+  </div>
+
+    <!-- FOOTER -->
+  <footer class="bg-dark text-light py-4 mt-5">
+    <div class="container text-center">
+      <p class="mb-0">&copy; 2025 Mundo Monopoly</p>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/scripts.js"></script>
+
+  <!-- Modal Lightbox para imágenes de Casillas -->
+<div class="modal fade image-lightbox" id="imageModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content position-relative">
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      <div class="modal-body">
+        <img id="lightboxImage" src="" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const modalEl = document.getElementById('imageModal');
+    const modal = new bootstrap.Modal(modalEl);
+    const modalImg = document.getElementById('lightboxImage');
+
+    document.querySelectorAll('#casillas .rule-card img').forEach(img => {
+      img.addEventListener('click', () => {
+        modalImg.src = img.src;
+        modalImg.alt = img.alt || 'Imagen del tablero';
+        modal.show();
+      });
+    });
+
+    // Agrega y quita clase .show para activar la animación CSS
+    modalEl.addEventListener('shown.bs.modal', () => modalEl.classList.add('show'));
+    modalEl.addEventListener('hide.bs.modal', () => modalEl.classList.remove('show'));
+  });
+</script>
+
+
+  <!-- Script billetes al final (después de Bootstrap) -->
+  <script>
+    window.addEventListener('load', function () {
+      if (!window.bootstrap) return;
+
+      const chipsWrap = document.getElementById('billsChips');
+      if (!chipsWrap) return;
+
+      // Preview en hover (popover) - solo desktop
+      const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+      if (!isTouch) {
+        chipsWrap.querySelectorAll('[data-bill]').forEach(chip => {
+          const denom = chip.getAttribute('data-bill');
+          const src = `../assets/bills/bill-${denom}.png`;
+
+          new bootstrap.Popover(chip, {
+            html: true,
+            trigger: 'hover focus',
+            placement: 'bottom',
+            container: 'body',
+            customClass: 'bill-popover',
+            content: `<img class="bill-preview" src="${src}" alt="Billete de $${denom}">`
+          });
+        });
+      }
+
+      // Lightbox en click
+      chipsWrap.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-bill]');
+        if (!btn) return;
+
+        const denom = btn.getAttribute('data-bill');
+        const src = `../assets/bills/bill-${denom}.png`;
+
+        const img = document.getElementById('billImg');
+        img.src = src;
+        img.alt = `Billete de $${denom}`;
+
+        new bootstrap.Modal(document.getElementById('billModal')).show();
+      }, false);
+    });
+  </script>
+</body>
+</html>

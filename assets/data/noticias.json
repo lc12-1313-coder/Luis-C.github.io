@@ -1,0 +1,70 @@
+{
+  "noticias": [
+    {
+      "id": 1,
+      "slug": "hasbro-90-aniversario-monopoly",
+      "titulo": "Hasbro celebra 90 años de Monopoly con nuevas expansiones",
+      "fecha": "2025-01-08",
+      "imagen": "../assets/img/Hasbro Enhances the MONOPOLY Play Experience.jpg",
+      "snippet": "Hasbro anunció nuevas expansiones y un rediseño visual del tablero clásico para celebrar el 90.º aniversario del icónico juego de mesa.",
+      "categoria": "curiosidades",
+      "url": "https://investor.hasbro.com/news-releases/news-release-details/hasbro-enhances-monopoly-play-experience-evolution-classic-game",
+      "contenidoHtml": "<p>Hasbro celebra los 90 años de Monopoly con una serie de expansiones y un rediseño completo del tablero clásico. La compañía promete una experiencia de juego renovada, manteniendo la esencia que ha entretenido a generaciones.</p><p>Entre las novedades se incluyen nuevas fichas coleccionables, cartas de comunidad actualizadas y versiones temáticas inspiradas en lugares emblemáticos del mundo.</p><p>Esta edición conmemorativa también incorpora mejoras visuales y materiales más sostenibles, como parte del compromiso ambiental de Hasbro.</p>"
+    },
+    {
+      "id": 2,
+      "slug": "record-guinness-918-jugadores-monopoly",
+      "titulo": "Récord Guinness: 918 personas jugaron Monopoly al mismo tiempo",
+      "fecha": "2025-04-15",
+      "imagen": "../assets/img/918 people play Monopoly.png",
+      "snippet": "Un evento benéfico en Sídney reunió a 918 jugadores para establecer un nuevo récord mundial de participación simultánea en una partida de Monopoly.",
+      "categoria": "competencias",
+      "url": "https://www.upi.com/Odd_News/2025/04/15/australia-Guinness-World-Records-Monopoly/8901744748424/",
+      "contenidoHtml": "<p>En un evento benéfico celebrado en Sídney, Australia, un total de 918 personas participaron simultáneamente en una partida de Monopoly, estableciendo un nuevo récord mundial Guinness.</p><p>La actividad fue organizada con el fin de recaudar fondos para distintas organizaciones de caridad locales y contó con la supervisión oficial de representantes de Guinness World Records.</p><p>Los organizadores destacaron que la logística fue un desafío, pero la comunidad respondió de forma entusiasta, demostrando la popularidad global del icónico juego de mesa.</p>"
+    },
+    {
+      "id": 3,
+      "slug": "coleccionista-record-4379-ediciones-monopoly",
+      "titulo": "Coleccionista rompe récord con 4,379 ediciones de Monopoly",
+      "fecha": "2025-10-14",
+      "imagen": "../assets/img/largest Monopoly collection.png",
+      "snippet": "Un entusiasta de los juegos de mesa en Taiwán alcanzó un nuevo récord mundial con la mayor colección de versiones de Monopoly jamás registrada.",
+      "categoria": "curiosidades",
+      "url": "https://www.taipeitimes.com/News/feat/archives/2025/10/14/2003845428",
+      "contenidoHtml": "<p>Un apasionado coleccionista taiwanés ha logrado un récord mundial al reunir la impresionante cifra de 4,379 ediciones diferentes de Monopoly, provenientes de países de todo el mundo.</p><p>Su colección incluye versiones clásicas, temáticas y de edición limitada, algunas de ellas extremadamente raras, como ediciones conmemorativas lanzadas en los años 50 y 60.</p><p>El logro fue reconocido oficialmente por Guinness World Records y se exhibirá en un museo local dedicado a la historia de los juegos de mesa.</p>"
+    },
+    {
+      "id": 4,
+      "slug": "monopoly-app-banking-sin-dinero-fisico",
+      "titulo": "Hasbro presenta Monopoly App Banking: sin billetes ni tarjetas físicas",
+      "fecha": "2025-05-22",
+      "imagen": "../assets/img/new version of Monopoly.png",
+      "snippet": "Hasbro lanza una versión moderna del juego en la que las transacciones se realizan mediante una aplicación móvil, eliminando el dinero en papel.",
+      "categoria": "curiosidades",
+      "url": "https://www.theverge.com/news/623716/hasbro-monopoly-app-banking-board-game-availability",
+      "contenidoHtml": "<p>Hasbro moderniza su clásico juego con el lanzamiento de Monopoly App Banking, una versión que reemplaza los billetes y tarjetas físicas por una aplicación móvil oficial.</p><p>Los jugadores podrán realizar transacciones, pagar alquileres y comprar propiedades escaneando códigos QR, lo que agiliza el desarrollo de la partida y reduce el riesgo de errores.</p><p>Esta edición busca atraer a un público más joven y familiarizado con la tecnología, ofreciendo una experiencia híbrida entre lo tradicional y lo digital.</p>"
+    },
+    {
+      "id": 5,
+      "slug": "edicion-especial-darwin-desmoines",
+      "titulo": "Edición especial de Monopoly: Darwin y Des Moines se unen a la colección",
+      "fecha": "2025-04-09",
+      "imagen": "../assets/img/Moines getting its own edition of Monopoly.png",
+      "snippet": "Las ciudades de Darwin (Australia) y Des Moines (EE. UU.) reciben sus propias versiones oficiales del juego con lugares emblemáticos locales.",
+      "categoria": "curiosidades",
+      "url": "https://www.kcci.com/article/monopoly-des-moines-edition-board-game-iowa-2025/64367674/",
+      "contenidoHtml": "<p>Hasbro anunció la incorporación de las ciudades de Darwin y Des Moines al catálogo de ediciones locales de Monopoly, sumándose a la extensa lista de urbes representadas en el juego.</p><p>Cada edición incluye lugares emblemáticos, calles y monumentos característicos de la ciudad, así como fichas exclusivas inspiradas en su cultura local.</p><p>Estas versiones buscan fortalecer la conexión del juego con las comunidades, promoviendo el turismo y el orgullo local.</p>"
+    },
+    {
+      "id": 6,
+      "slug": "nuevas-ediciones-boston-baltimore",
+      "titulo": "Monopoly lanza nuevas ediciones de Boston y Baltimore",
+      "fecha": "2025-03-10",
+      "imagen": "../assets/img/Monopoly Baltimore Edition.png",
+      "snippet": "Hasbro y Top Trumps USA anunciaron el lanzamiento de nuevas ediciones locales dedicadas a Boston y Baltimore para 2025.",
+      "categoria": "curiosidades",
+      "url": "https://i95business.com/releases/6824",
+      "contenidoHtml": "<p>Hasbro, en colaboración con Top Trumps USA, reveló dos nuevas ediciones regionales de Monopoly dedicadas a las ciudades de Boston y Baltimore.</p><p>Cada tablero presenta ubicaciones icónicas como el puerto de Boston, el mercado Faneuil Hall, el Inner Harbor de Baltimore y Camden Yards.</p><p>Las ediciones incluyen cartas de comunidad adaptadas a eventos históricos y fichas personalizadas que representan símbolos culturales de cada ciudad.</p>"
+    }
+  ]
+}

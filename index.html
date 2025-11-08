@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mundo Monopoly — Todo sobre el juego clásico</title>
+
+  <script>
+/* Evita flash del intro si ya fue visto */
+try {
+  if (sessionStorage.getItem('seenIntro') === '1') {
+    document.documentElement.classList.add('home-ready'); // se usa en CSS
+  }
+} catch(e) {}
+</script>
+
+  <!-- SEO -->
+  <meta name="description" content="Descubre reglas, estrategias, ediciones y noticias del Monopoly con una experiencia clara y moderna." />
+  <meta name="keywords" content="Monopoly, reglas, estrategias, ediciones, historia Monopoly" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Mundo Monopoly — Todo sobre el juego clásico" />
+  <meta property="og:description" content="Guías claras, estrategias ganadoras, ediciones populares y noticias actualizadas." />
+  <meta property="og:image" content="assets/img/monopoly-og.jpg" />
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg?v=2" />
+  <meta name="theme-color" content="#E30613" />
+
+  <!-- Fonts + Bootstrap + Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+
+  <!-- Site CSS -->
+  <link href="css/styles.css" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Contenedor para alertas flotantes -->
+<div id="alertPlaceholder"
+     class="position-fixed top-0 end-0 p-3"
+     style="z-index: 9999; width: auto; max-width: 350px;">
+</div>
+
+  <!-- NAVBAR con estilo Carbon Matte YA TU SABES-->
+<nav class="navbar navbar-expand-lg navbar-carbon fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <img src="assets/icons/logo.svg" alt="Mundo Monopoly" height="40">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+  <li class="nav-item"><a class="nav-link" data-page="index" href="#">Inicio</a></li>
+  <li class="nav-item"><a class="nav-link" data-page="historia.html" href="#">Historia</a></li>
+  <li class="nav-item"><a class="nav-link" data-page="reglas.html" href="#">Reglas</a></li>
+  <li class="nav-item"><a class="nav-link" data-page="piezas.html" href="#">Piezas</a></li>
+  <li class="nav-item"><a class="nav-link" data-page="estrategias.html" href="#">Estrategias</a></li>
+  <li class="nav-item"><a class="nav-link" data-page="productos.html" href="#">Productos</a></li>
+  <li class="nav-item"><a class="nav-link" data-page="noticias.html" href="#">Noticias</a></li>
+  <li class="nav-item"><a class="nav-link" data-page="contacto.html" href="#">Contacto</a></li>
+</ul>
+
+
+      <div class="d-flex ms-auto">
+        <button id="darkModeToggle" class="btn btn-outline-light" type="button" title="Modo oscuro">
+          <i class="bi bi-moon-stars"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+  <section id="introHero" class="hero-intro">
+  <video id="heroVideo"
+         class="hero-video"
+         playsinline
+         preload="auto"
+         poster="assets/img/hero-monopoly.jpg">
+    <source src="assets/video/intro-hero-monopoly.mp4" type="video/mp4">
+  </video>
+
+  <div class="hero-overlay">
+    <button id="enterSite" class="btn btn-primary btn-lg px-4">Entrar</button>
+  </div>
+</section>
+
+
+  <!-- CONTENIDO PRINCIPAL (se revela tras el zoom) -->
+  <main id="homeContent" class="home-content container py-5">
+    <!-- 5 pasos -->
+    <section class="mb-5">
+      <h2 class="text-center mb-4">Empieza en 5 pasos</h2>
+      <div class="row g-4">
+        <div class="col-6 col-md"><div class="step-card text-center p-3"><i class="bi bi-dice-6 display-6"></i><p class="mb-0 mt-2">Lanza y mueve</p></div></div>
+        <div class="col-6 col-md"><div class="step-card text-center p-3"><i class="bi bi-geo-alt display-6"></i><p class="mb-0 mt-2">Compra lo que pises</p></div></div>
+        <div class="col-6 col-md"><div class="step-card text-center p-3"><i class="bi bi-cash-coin display-6"></i><p class="mb-0 mt-2">Cobra rentas</p></div></div>
+        <div class="col-6 col-md"><div class="step-card text-center p-3"><i class="bi bi-houses display-6"></i><p class="mb-0 mt-2">Construye 3 casas</p></div></div>
+        <div class="col-12 col-md"><div class="step-card text-center p-3"><i class="bi bi-trophy display-6"></i><p class="mb-0 mt-2">Gana la partida</p></div></div>
+      </div>
+    </section>
+
+    <!-- Accesos 2x2 -->
+    <section class="mb-5">
+      <div class="row g-4">
+        <div class="col-12 col-md-6 col-lg-3">
+          <a href="pages/historia.html" class="tile-card">
+            <div class="tile-media">
+              <img src="assets/img/historia%20del%20monopoly.jpg" alt="Historia de Monopoly" loading="lazy" />
+            </div>
+            <div class="tile-body"><h3>Historia</h3><span class="link">Explorar</span></div>
+          </a>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <a href="pages/reglas.html" class="tile-card">
+            <div class="tile-media">
+              <img src="assets/img/reglas%20del%20monopoly.png" alt="Reglas de Monopoly" loading="lazy" />
+            </div>
+            <div class="tile-body"><h3>Reglas</h3><span class="link">Ver reglas</span></div>
+          </a>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <a href="pages/piezas.html" class="tile-card">
+            <div class="tile-media">
+              <img src="assets/img/piezas%20del%20monopoly.jpg" alt="Piezas de Monopoly" loading="lazy" />
+            </div>
+            <div class="tile-body"><h3>Piezas</h3><span class="link">Conocer</span></div>
+          </a>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3">
+          <a href="pages/estrategias.html" class="tile-card">
+            <div class="tile-media">
+              <img src="assets/img/monopoly%20strategia.png" alt="Estrategias de Monopoly" loading="lazy" />
+            </div>
+            <div class="tile-body"><h3>Estrategias</h3><span class="link">Aprender</span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chips de estrategia -->
+    <section class="mb-5">
+      <h2 class="h4 mb-3">Estrategias rápidas</h2>
+      <div class="d-flex flex-wrap gap-2">
+        <span class="chip">Naranjas/Rojas = más caídas</span>
+        <span class="chip">3 casas &gt; hoteles</span>
+        <span class="chip">Ferrocarriles sí</span>
+        <span class="chip">Liquidez primero</span>
+        <span class="chip">Hipoteca táctica</span>
+      </div>
+    </section>
+
+    <!-- Ediciones destacadas -->
+   <section class="mb-5 ediciones-slider">
+  <div class="d-flex align-items-center justify-content-between mb-3">
+    <h2 class="h4 mb-0">Ediciones destacadas</h2>
+    <a href="pages/productos.html" class="btn btn-sm btn-outline-primary">Ver todas</a>
+  </div>
+
+  <div class="marquee" id="edicionesMarquee">
+    <div class="marquee-track" id="edicionesTrack">
+      <!-- Ítem 1 -->
+      <article class="card product-flat">
+        <div class="ratio ratio-16x9">
+          <img src="assets/img/monopoly%20clasico.png" class="img-cover" alt="Monopoly Classic" loading="lazy" />
+        </div>
+        <div class="card-body">
+          <div class="d-flex gap-2 mb-2">
+            <span class="badge bg-primary">Clásica</span><span class="badge bg-success">Top</span>
+          </div>
+          <h3 class="h6 mb-2">Monopoly Classic</h3>
+          <a href="pages/productos.html" class="link-primary">Ver detalles</a>
+        </div>
+      </article>
+
+      <!-- Ítem 2 -->
+      <article class="card product-flat">
+        <div class="ratio ratio-16x9">
+          <img src="assets/img/monopoly%20ultimate%20bank.png" class="img-cover" alt="Ultimate Banking" loading="lazy" />
+        </div>
+        <div class="card-body">
+          <div class="d-flex gap-2 mb-2">
+            <span class="badge bg-warning text-dark">Premium</span>
+          </div>
+          <h3 class="h6 mb-2">Ultimate Banking Edition</h3>
+          <a href="pages/productos.html" class="link-primary">Ver detalles</a>
+        </div>
+      </article>
+
+      <!-- Ítem 3 -->
+      <article class="card product-flat">
+        <div class="ratio ratio-16x9">
+          <img src="assets/img/monopoly%20mario%20movie.png" class="img-cover" alt="Super Mario Bros. Movie" loading="lazy" />
+        </div>
+        <div class="card-body">
+          <div class="d-flex gap-2 mb-2">
+            <span class="badge bg-info text-dark">Temática</span>
+          </div>
+          <h3 class="h6 mb-2">Super Mario Bros. Movie</h3>
+          <a href="pages/productos.html" class="link-primary">Ver detalles</a>
+        </div>
+      </article>
+      <!-- No agregues más aquí: el script duplicará automáticamente para el bucle -->
+    </div>
+  </div>
+</section>
+
+
+    <!-- Noticias (desde tu JSON) -->
+<section class="mb-4">
+  <div class="d-flex align-items-center gap-3 mb-2">
+    <h2 class="h4 mb-0">Noticias</h2>
+    <a href="pages/noticias.html" class="btn btn-sm btn-outline-primary">Ir a noticias</a>
+  </div>
+  <div id="homeNews" class="row g-4">
+    <!-- Se llenará con JS leyendo assets/data/noticias.json (3 items) -->
+  </div>
+</section>
+
+  </main>
+
+  <!-- FOOTER (mejorado) -->
+  <footer class="bg-dark text-light py-5 mt-4">
+    <div class="container footer-columns">
+      <div class="row gx-4 gy-4 align-items-start">
+        <div class="col-12 col-md-4">
+          <h5 class="fw-bold">Mundo Monopoly</h5>
+          <p>Tu guía completa del juego más famoso de bienes raíces</p>
+        </div>
+        <div class="col-12 col-md-4">
+          <h5 class="fw-bold">Enlaces rápidos</h5>
+          <ul class="list-unstyled">
+            <li><a href="pages/estrategias.html" class="text-light text-decoration-none hover-effect">Estrategias</a></li>
+            <li><a href="pages/productos.html" class="text-light text-decoration-none hover-effect">Productos</a></li>
+            <li><a href="pages/contacto.html" class="text-light text-decoration-none hover-effect">Contacto</a></li>
+            <li><a href="pages/privacidad.html" class="text-light text-decoration-none hover-effect">Privacidad</a></li>
+          </ul>
+        </div>
+        <div class="col-12 col-md-4 footer-social text-md-start text-center">
+          <h5 class="fw-bold mb-3">Síguenos</h5>
+          <div class="d-flex justify-content-md-start justify-content-center gap-3 social-links">
+            <a href="https://www.facebook.com/MONOPOLYGame/" class="btn btn-facebook" aria-label="MONOPOLY en Facebook" target="_blank" rel="noopener">
+              <i class="bi bi-facebook"></i>
+            </a>
+            <a href="https://x.com/Hasbro" class="btn btn-x" aria-label="Hasbro en X" target="_blank" rel="noopener">
+              <i class="bi bi-twitter-x"></i>
+            </a>
+            <a href="https://www.instagram.com/monopolygameofficial/" class="btn btn-instagram" aria-label="MONOPOLY en Instagram" target="_blank" rel="noopener">
+              <i class="bi bi-instagram"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <hr class="my-4 border-secondary" />
+      <div class="text-center small text-muted">© 2025 Mundo Monopoly. Todos los derechos reservados.</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/scripts.js"></script>
+
+  <script>
+(function(){
+  const track = document.getElementById('edicionesTrack');
+  const marquee = document.getElementById('edicionesMarquee');
+  if (!track || !marquee) return;
+
+  const items = Array.from(track.children);
+
+  function fillClones(){
+    // limpia clones previos si recalculamos
+    track.querySelectorAll('[data-clone="1"]').forEach(n => n.remove());
+    const viewportW = marquee.clientWidth;
+    let totalW = track.scrollWidth;
+    let i = 0;
+    while (totalW < viewportW * 2.2 && i < 20) {
+      items.forEach(el => {
+        const clone = el.cloneNode(true);
+        clone.setAttribute('data-clone','1');
+        track.appendChild(clone);
+      });
+      totalW = track.scrollWidth;
+      i++;
+    }
+  }
+
+  function setDuration(){
+    const total = track.scrollWidth;
+    const firstRunWidth = total / 2;  // recorridos “útiles”
+    const pxPerSec = (window.innerWidth < 576) ? 40 : 60; // velocidad adaptativa
+    const seconds = Math.max(12, Math.round(firstRunWidth / pxPerSec));
+    track.style.setProperty('--marquee-shift', firstRunWidth + 'px');
+    track.style.animationDuration = seconds + 's';
+    // Asegura dirección única (normal)
+    track.style.animationDirection = 'normal';
+  }
+
+  function initMarquee(){
+    fillClones();
+    setDuration();
+  }
+
+  let resizeTO;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTO);
+    resizeTO = setTimeout(initMarquee, 200);
+  });
+
+  initMarquee();
+})();
+</script>
+
+  <!-- JS de la Home -->
+   <script src="js/scripts.js"></script>
+
+  <!-- SCRIPT del video de introducción -->
+<script>
+(function(){
+  const intro = document.getElementById('introHero');
+  const home  = document.getElementById('homeContent');
+  const btn   = document.getElementById('enterSite');
+  const video = document.getElementById('heroVideo');
+
+  if (!intro || !btn || !video) return;
+
+  // Si ya se vio antes, entra directo
+  if (sessionStorage.getItem('seenIntro') === '1') {
+    document.body.classList.add('home-ready');
+    intro.classList.add('is-hidden');
+    return;
+  }
+
+  let started = false;
+
+  btn.addEventListener('click', async () => {
+    if (!started) {
+      started = true;
+      intro.classList.add('playing');
+      btn.textContent = 'Saltar intro';
+      try {
+        video.currentTime = 0;
+        video.muted = false;
+        await video.play();
+      } catch (e) {
+        try { video.muted = true; await video.play(); } catch(_) {}
+      }
+
+      video.addEventListener('ended', () => {
+        sessionStorage.setItem('seenIntro', '1');
+        reveal();
+      }, { once: true });
+
+    } else {
+      sessionStorage.setItem('seenIntro', '1');
+      try { if (!video.paused) video.pause(); } catch(_){}
+      reveal();
+    }
+  });
+
+  function reveal(){
+    btn.disabled = true;
+    document.body.classList.add('home-ready');
+    intro.classList.add('is-hidden');
+  }
+})();
+</script>
+
+
+<script>
+    // 2) Noticias (toma las primeras 3 del JSON)
+    (function(){
+      const box = document.getElementById('homeNews');
+      if (!box) return;
+      fetch('assets/data/noticias.json')
+        .then(r => r.json())
+        .then(noticias => {
+          const first3 = (noticias || []).slice(0,3);
+          box.innerHTML = first3.map(n => `
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="card h-100 shadow-sm">
+                <div class="ratio ratio-16x9">
+                  <img src="${n.imagen}" class="img-cover" alt="${n.titulo}" loading="lazy">
+                </div>
+                <div class="card-body">
+                  <span class="badge bg-secondary mb-2">${n.categoria || 'General'}</span>
+                  <h3 class="h6 mb-1">${n.titulo}</h3>
+                  <p class="small text-muted mb-2">${new Date(n.fecha).toLocaleDateString()}</p>
+                  <p class="mb-3">${n.snippet}</p>
+                  ${n.enlace ? `<a class="btn btn-sm btn-outline-primary" href="${n.enlace}" target="_blank" rel="noopener">Leer más</a>` : ''}
+                </div>
+              </div>
+            </div>
+          `).join('');
+        })
+        .catch(()=>{ /* silencioso */ });
+    })();
+  </script>
+</body>
+</html>

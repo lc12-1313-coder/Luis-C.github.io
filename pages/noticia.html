@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Noticia — Mundo Monopoly</title>
+  <meta name="description" content="Detalle de noticia de Mundo Monopoly">
+
+  <!-- Fuentes / Bootstrap / Iconos -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Tus estilos globales -->
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+  <meta name="theme-color" content="#E30613">
+
+ <style>
+  /* ===== HERO ===== */
+  #heroWrap{
+    position: relative;
+    width: 100%;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 15px 40px rgba(0,0,0,.25);
+  }
+  #heroWrap::before{
+    content:"";
+    display:block;
+    aspect-ratio:16/9;
+  }
+  #heroWrap img{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:cover;
+    object-position:center;
+    border-radius:0;
+    transition: transform .35s ease, opacity .25s ease;
+  }
+  #heroWrap:hover img{ transform:scale(1.035); opacity:.97; }
+  @media (max-width: 992px){ #heroWrap::before{ aspect-ratio: 4/3; } }
+  @media (max-width: 576px){ #heroWrap::before{ aspect-ratio: 1/1; } }
+
+  /* ===== CUERPO ===== */
+  .prose { font-size: 1.05rem; line-height: 1.9; letter-spacing: .1px; color: var(--mm-fg); }
+  .prose p { margin-bottom: 1.1rem; color: var(--mm-fg); opacity: .9; }
+  .prose h2, .prose h3 { color: var(--mm-fg); }
+  .prose blockquote{
+    background: rgba(0,0,0,.03);
+    border-left: 4px solid rgba(0,0,0,.08);
+    color: inherit;
+    padding: .75rem 1rem; border-radius: .5rem;
+  }
+  body.dark-theme .prose blockquote{
+    background: rgba(255,255,255,.06);
+    border-left-color: rgba(255,255,255,.15);
+  }
+
+  /* ===== RELACIONADAS ===== */
+  .related-item { display: grid; grid-template-columns: 96px 1fr; gap: .75rem; align-items: center; }
+  .related-item .thumb{ position:relative; width:96px; aspect-ratio:3/2; border-radius:.6rem; overflow:hidden; box-shadow:0 4px 18px rgba(0,0,0,.12); }
+  .related-item .thumb img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
+  .related-item .title{ font-weight:600; line-height:1.2; color: var(--mm-fg); }
+  .related-item a{ color:inherit; text-decoration:none; }
+  .related-item a:hover .title{ text-decoration:underline; }
+
+  /* ===== PREV / NEXT ===== */
+  .prevnext{ display:grid; grid-template-columns: 1fr 1fr; gap:1rem; }
+  .prevnext a{
+    display:flex; align-items:center; gap:.75rem; text-decoration:none;
+    background: var(--mm-surface);
+    color: var(--mm-fg);
+    border: 1px solid var(--mm-card-border);
+    border-radius:.8rem; padding: .9rem 1rem; box-shadow:0 5px 12px rgba(0,0,0,.06);
+    transition: background .25s ease, transform .25s ease;
+  }
+  .prevnext a:hover{ background: rgba(0,0,0,.04); transform: translateY(-2px); }
+  body.dark-theme .prevnext a:hover{ background: rgba(255,255,255,.06); }
+</style>
+
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-carbon fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="../index.html">
+        <img src="../assets/icons/logo.svg" alt="Mundo Monopoly" height="40">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="./historia.html">Historia</a></li>
+          <li class="nav-item"><a class="nav-link" href="./reglas.html">Reglas</a></li>
+          <li class="nav-item"><a class="nav-link" href="./piezas.html">Piezas</a></li>
+          <li class="nav-item"><a class="nav-link" href="./estrategias.html">Estrategias</a></li>
+          <li class="nav-item"><a class="nav-link" href="./productos.html">Productos</a></li>
+          <li class="nav-item"><a class="nav-link active" href="./noticias.html">Noticias</a></li>
+          <li class="nav-item"><a class="nav-link" href="./contacto.html">Contacto</a></li>
+        </ul>
+        <div class="d-flex ms-auto">
+          <button id="darkModeToggle" class="btn btn-outline-light" type="button" title="Modo oscuro">
+            <i class="bi bi-moon-stars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-5 mt-4">
+    <nav class="mb-3" aria-label="breadcrumb">
+      <ol class="breadcrumb mb-0">
+        <li class="breadcrumb-item"><a href="../index.html">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="./noticias.html">Noticias</a></li>
+        <li class="breadcrumb-item active" aria-current="page" id="bcTitle">Cargando…</li>
+      </ol>
+    </nav>
+
+    <header class="mb-2">
+      <h1 id="title" class="mb-2">Cargando…</h1>
+      <div class="d-flex flex-wrap gap-2 align-items-center text-muted">
+        <span class="badge bg-secondary" id="categoria">—</span>
+        <span id="fecha" class="small">—</span>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <div id="heroWrap" class="my-3"></div>
+
+    <div class="row g-4">
+      <div class="col-lg-8">
+        <article class="article-content prose" id="contenido"></article>
+
+        <hr class="my-4">
+        <div id="prevNext" class="prevnext mb-4"></div>
+
+        <div class="d-flex flex-wrap gap-2">
+          <a id="btnFuente" class="btn btn-outline-primary d-none" target="_blank" rel="noopener">
+            <i class="bi bi-box-arrow-up-right me-1"></i> Ver en el sitio original
+          </a>
+          <a id="btnCompartir" class="btn btn-outline-secondary">
+            <i class="bi bi-share me-1"></i> Compartir
+          </a>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="col-lg-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">Más noticias</h5>
+            <div id="relacionadas" class="vstack gap-3"></div>
+            <a class="btn btn-link mt-2 px-0" href="./noticias.html">
+              <i class="bi bi-arrow-left"></i> Volver a Noticias
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="bg-dark text-light py-4 text-center">&copy; 2025 Mundo Monopoly</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/scripts.js"></script>
+
+  <script>
+  const getParam = (n) => new URL(location.href).searchParams.get(n);
+  const fmt = (i) => { try { return new Date(i).toLocaleDateString('es-DO',{year:'numeric',month:'long',day:'2-digit'}) } catch { return i } };
+
+  /* ===================== Resolución de imágenes ===================== */
+  const IMG_BASES = ['../assets/img/noticias/','../assets/img/','../assets/images/noticias/'];
+  const IMG_EXTS = ['jpg','jpeg','png','webp'];
+  const PLACEHOLDER = '../assets/img/placeholder.jpg';
+
+  const isPath = s => /[\\/]/.test(s || '');
+  const hasExt = s => /\.\w{2,5}(\?.*)?$/i.test(s || '');
+
+  function buildCandidates(src){
+    if(!src) return [];
+    if(isPath(src)){
+      if(hasExt(src)){
+        const baseNoExt = src.replace(/\.\w{2,5}(\?.*)?$/i,'');
+        return [src, ...IMG_EXTS.map(e => `${baseNoExt}.${e}`)];
+      }
+      return IMG_EXTS.map(e => `${src}.${e}`);
+    }
+    const name = src.replace(/\.\w{2,5}(\?.*)?$/i,'');
+    const out = [];
+    for(const base of IMG_BASES) for(const ext of IMG_EXTS) out.push(`${base}${name}.${ext}`);
+    return out;
+  }
+
+  // 🔧 MODIFICACIÓN: ahora codifica espacios (%20) para que cargue correctamente
+  function loadWithFallback(imgEl, src){
+    if(!src) src = PLACEHOLDER;
+    src = encodeURI(src); // <--- codifica espacios y caracteres especiales
+    const candidates = [...buildCandidates(src), PLACEHOLDER].filter(Boolean);
+    let i = 0;
+    imgEl.onerror = () => { if(++i < candidates.length) imgEl.src = candidates[i]; };
+    imgEl.src = candidates[i];
+  }
+
+  function hero(src, alt){
+    const h = document.getElementById('heroWrap');
+    h.innerHTML = '<img alt="" loading="lazy" decoding="async">';
+    const img = h.querySelector('img');
+    img.alt = alt || 'Imagen de la noticia';
+    loadWithFallback(img, src);
+  }
+
+  /* ===================== Render ===================== */
+  (async () => {
+    const slug = getParam('slug'), nid = parseInt(getParam('nid'));
+    let D;
+    try { D = JSON.parse(sessionStorage.getItem('MM_NEWS_JSON_SORTED')); } catch {}
+    if (!Array.isArray(D)) {
+      const r = await fetch('../assets/data/noticias.json', { cache: 'force-cache' });
+      const j = await r.json();
+      D = (Array.isArray(j) ? j : j.noticias) || [];
+      D = D.slice().sort((a,b)=> new Date(b.fecha) - new Date(a.fecha));
+      sessionStorage.setItem('MM_NEWS_JSON_SORTED', JSON.stringify(D));
+    }
+
+    let N = D[nid];
+    if (!N || N.slug !== slug) N = D.find(n => n.slug === slug);
+    if (!N) { document.getElementById('contenido').innerHTML = '<div class="alert alert-warning">Noticia no encontrada.</div>'; return; }
+
+    document.getElementById('title').textContent = N.titulo || 'Sin título';
+    document.getElementById('bcTitle').textContent = N.titulo || 'Noticia';
+    document.getElementById('categoria').textContent = N.categoria || 'General';
+    document.getElementById('fecha').textContent = fmt(N.fecha);
+
+    // Hero principal
+    hero(N.imagen || N.slug || 'largest-monopoly-collection', N.titulo);
+
+    document.getElementById('contenido').innerHTML = N.contenidoHtml || `<p class="text-muted">${N.snippet || '—'}</p>`;
+
+    if (N.url) {
+      const b = document.getElementById('btnFuente');
+      b.classList.remove('d-none');
+      b.href = N.url;
+    }
+
+    // Noticias relacionadas
+    let rel = D.filter(n => n.slug !== N.slug && n.categoria === N.categoria).slice(0, 3);
+    if (rel.length < 3) {
+      for (const n of D) {
+        if (n.slug === N.slug) continue;
+        if (!rel.find(x => x.slug === n.slug)) rel.push(n);
+        if (rel.length === 3) break;
+      }
+    }
+
+    const $rel = document.getElementById('relacionadas');
+    if (!rel.length) {
+      $rel.innerHTML = '<span class="text-muted small">No hay más noticias disponibles.</span>';
+    } else {
+      $rel.innerHTML = rel.map(r => `
+        <div class="related-item">
+          <div class="thumb">
+            <img alt="${r.titulo}" data-src="${r.imagen || r.slug}">
+          </div>
+          <div>
+            <div class="small text-muted">${fmt(r.fecha)}</div>
+            <a href="./noticia.html?slug=${encodeURIComponent(r.slug)}&nid=${D.indexOf(r)}">
+              <div class="title">${r.titulo}</div>
+            </a>
+          </div>
+        </div>
+      `).join('');
+
+      // Carga con codificación y fallback
+      $rel.querySelectorAll('img[data-src]').forEach(im => {
+        loadWithFallback(im, im.dataset.src);
+      });
+    }
+
+    // Prev / Next
+    const i = D.indexOf(N);
+    const prev = i > 0 ? D[i - 1] : null;
+    const next = i < D.length - 1 ? D[i + 1] : null;
+    const pn = document.getElementById('prevNext');
+    pn.innerHTML = `
+      <div>${prev ? `<a href="./noticia.html?slug=${encodeURIComponent(prev.slug)}&nid=${D.indexOf(prev)}"><span class="dir small text-muted">Anterior</span><span class="ms-2">${prev.titulo}</span></a>` : ''}</div>
+      <div class="text-end">${next ? `<a href="./noticia.html?slug=${encodeURIComponent(next.slug)}&nid=${D.indexOf(next)}"><span class="me-2">${next.titulo}</span><span class="dir small text-muted">Siguiente</span></a>` : ''}</div>
+    `;
+  })();
+  </script>
+</body>
+</html>
